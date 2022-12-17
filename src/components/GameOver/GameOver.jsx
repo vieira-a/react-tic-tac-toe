@@ -1,4 +1,4 @@
-export default function GameOver () {
+export default function GameOver() {
   return (
     <p>Game Over</p>
   )

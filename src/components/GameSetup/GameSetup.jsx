@@ -11,7 +11,8 @@ export default function GameSetup() {
     setGamePlayer,
     gameStage,
     setGameStage, 
-    handleGameOption
+    handleGameOption,
+    handleGameStage
   } = useContext(GameContext);
 
   return (
@@ -27,8 +28,8 @@ export default function GameSetup() {
           <button disabled={gameOption === 1 ? true: false} onClick={handleGameOption}>o</button>
         </div>
         <div className="setGamePlayer">
-          <button>new game (vs cpu)</button>
-          <button>new game (vs human)</button>
+          <button onClick={handleGameStage}>new game (vs cpu)</button>
+          <button onClick={handleGameStage}>new game (vs human)</button>
         </div>
       </div>
     </section>

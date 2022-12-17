@@ -1,6 +1,11 @@
+//Context
 import { useContext } from "react";
 import { GameContext } from "./context/GameContext";
+
+//Components
 import GameSetup from "./components/GameSetup/GameSetup";
+import GamePlay from "./components/GamePlay/GamePlay";
+import GameOver from "./components/GameOver/GameOver";
 
 function App() {
   
@@ -9,8 +14,10 @@ function App() {
   return (
     <div className="App">
       {gameStage === 0 && <GameSetup />}
+      {gameStage === 1 && <GamePlay />}
+      {gameStage === 2 && <GameOver />}
     </div>
     )
 }
 
-export default App
+export default App;

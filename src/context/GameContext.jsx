@@ -16,6 +16,14 @@ export const GameContextProvider = ({children}) => {
     }
   }
 
+  const handleGameStage = () => {
+    if(gameStage === 0) {
+      setGameStage(1);
+    } else if(gameStage === 1){
+      setGameStage(2)
+    }
+  }
+
 return (
   <GameContext.Provider 
   value={
@@ -26,7 +34,8 @@ return (
       setGamePlayer,
       gameStage,
       setGameStage,
-      handleGameOption
+      handleGameOption,
+      handleGameStage
     }
     }>
     {children}
