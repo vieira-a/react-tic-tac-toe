@@ -1,13 +1,16 @@
 import { useContext } from "react";
 import { GameContext } from "./context/GameContext";
+import GameSetup from "./components/GameSetup/GameSetup";
 
 function App() {
   
-  const { gameOption, setGameOption } = useContext(GameContext);
+  const { gameStage } = useContext(GameContext);
   
   return (
-    <h1>Tic Tac Toe Game</h1>
-  )
+    <div className="App">
+      {gameStage === 0 && <GameSetup />}
+    </div>
+    )
 }
 
 export default App
