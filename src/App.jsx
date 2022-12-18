@@ -1,3 +1,6 @@
+//Styles
+import { GlobalStyle } from "./components/GlobalStyle";
+
 //Context
 import { useContext } from "react";
 import { GameContext } from "./context/GameContext";
@@ -13,6 +16,7 @@ function App() {
   
   return (
     <div className="App">
+      <GlobalStyle />
       {gameStage === 0 && <GameSetup />}
       {gameStage === 1 && <GamePlay />}
       {gameStage === 2 && <GameOver />}

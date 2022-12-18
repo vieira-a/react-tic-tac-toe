@@ -1,3 +1,10 @@
+//Styles
+import * as S from './styles';
+
+//components
+import ButtonX from "../Button/ButtonX";
+import ButtonO from "../Button/ButtonO";
+
 import { useContext } from "react";
 import { GameContext } from "../../context/GameContext";
 
@@ -18,11 +25,12 @@ export default function GameSetup() {
   return (
     <>
     <header>
-      <div className="logo">Logo</div>
+      <ButtonX />
+      <ButtonO />
     </header>
     <section>
       <div className="setGameOption">
-        <p>pick player 1' mark</p>
+        <S.Text>pick player 1' mark</S.Text>
         <div className="setGameOption">
           <button disabled={gameOption === 0 ? true : false} onClick={handleGameOption}>x</button>
           <button disabled={gameOption === 1 ? true: false} onClick={handleGameOption}>o</button>
