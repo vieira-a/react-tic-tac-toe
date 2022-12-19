@@ -14,9 +14,9 @@ Projeto pessoal para praticar conhecimentos adquiridos em Lógica de Programaç�
 
 <br>
 
-<!-- <p align="center">
-  <img alt="personalcard" src=".github/bg-cover.png" width="100%">
-</p> -->
+<p align="center">
+  <img alt="tic-tac-toe" src=".github/bg-cover.png" width="100%">
+</p>
 
 ## Tecnologias
 
