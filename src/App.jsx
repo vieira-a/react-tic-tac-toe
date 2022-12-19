@@ -15,7 +15,7 @@ function App() {
   const { gameStage } = useContext(GameContext);
   
   return (
-    <div className="App">
+    <div className="App wrapper">
       <GlobalStyle />
       {gameStage === 0 && <GameSetup />}
       {gameStage === 1 && <GamePlay />}
