@@ -26,7 +26,6 @@ Esse projeto está sendo desenvolvido com as seguintes tecnologias:
 - [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 - [React JS](https://pt-br.reactjs.org/)
 - [Styled-components](https://styled-components.com/)
-- [Tailwind CSS](https://tailwindcss.com/)
 - [Node e NPM](https://nodejs.org/)
 - [Vite](https://vitejs.dev/)
 
