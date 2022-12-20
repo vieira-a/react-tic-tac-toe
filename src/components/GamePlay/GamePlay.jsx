@@ -27,6 +27,7 @@ export default function GamePlay () {
   console.log(gameOption )
 
   return (
+    <>
     <S.Header>
       <S.DivLogo>
         <ButtonX />
@@ -41,5 +42,18 @@ export default function GamePlay () {
       </S.ButtonShowTurn>
       <ButtonReload />
     </S.Header>
+    <S.DivPlayOptions>
+      <S.ButtonPlayOption></S.ButtonPlayOption>
+      <S.ButtonPlayOption></S.ButtonPlayOption>
+      <S.ButtonPlayOption></S.ButtonPlayOption>
+      <S.ButtonPlayOption></S.ButtonPlayOption>
+      <S.ButtonPlayOption></S.ButtonPlayOption>
+      <S.ButtonPlayOption></S.ButtonPlayOption>
+      <S.ButtonPlayOption></S.ButtonPlayOption>
+      <S.ButtonPlayOption></S.ButtonPlayOption>
+      <S.ButtonPlayOption></S.ButtonPlayOption>
+    </S.DivPlayOptions>
+
+    </>
   )
 }

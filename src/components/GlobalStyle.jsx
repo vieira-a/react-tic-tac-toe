@@ -32,6 +32,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 37.5rem;
     text-align: center;
     margin-inline: auto;
+    padding-inline: 2.4rem;
   }
 
 `

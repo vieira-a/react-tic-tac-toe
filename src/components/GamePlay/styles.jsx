@@ -7,7 +7,8 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2.4rem;
+  padding-block: 2.4rem;
+  margin-bottom: 3.8rem;
 `
 
 export const DivLogo = styled.div`
@@ -19,7 +20,7 @@ export const DivLogo = styled.div`
 
 export const ButtonShowTurn = styled.button`
   background: ${color.gunmetal[4]};
-  box-shadow: ${shadow.gunmetal};
+  box-shadow: ${shadow.gunmetal['sm']};
   padding: 0.8rem 1.2rem;
   border-radius: 4px;
   display: flex;
@@ -36,4 +37,17 @@ export const Text = styled.p`
   color: ${props => props.primary ? color.gunmetal['light'] : color.gunmetal[1]};
   text-transform: uppercase;
   letter-spacing: 0.1em;
+`
+
+export const DivPlayOptions = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.8rem;
+`
+
+export const ButtonPlayOption = styled.button`
+  height: 8.4rem;
+  border-radius: 8px;
+  background-color: ${color.gunmetal[4]};
+  box-shadow: ${shadow.gunmetal['lg']};
 `
