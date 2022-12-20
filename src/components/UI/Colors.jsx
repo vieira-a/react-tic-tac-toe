@@ -9,5 +9,6 @@ export const color = {
 
 export const shadow = {
   'gold': '0px 4px 0px rgba(206, 159, 63, 0.8)',
-  'green': '0px 4px 0px rgba(49, 196, 191, 0.75)'
+  'green': '0px 4px 0px rgba(49, 196, 191, 0.75)',
+  'gunmetal': '0px 4px 0px rgba(0, 0, 0, 0.25)',
 }

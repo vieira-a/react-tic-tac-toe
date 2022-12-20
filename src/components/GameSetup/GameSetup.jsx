@@ -29,7 +29,7 @@ export default function GameSetup() {
     <S.Header>
 
       <ButtonX />
-      <ButtonO fill={"#CE9F3F"} />
+      <ButtonO />
 
     </S.Header>
 

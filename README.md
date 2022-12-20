@@ -68,6 +68,8 @@ Inicio: 16/12/2022 | Fim: 23/12/2022
         - [x] Desabilitar o botão quando clicado
       - [x] Função para ir para o próximo estágio do jogo após configurações inicias
   - [ ] GamePlay
+    - [ ] Criar componentes e seus respectivos estilos
+    - [ ] Implementar funções para realizar interações necessárias
   - [ ] GameOver
  
 ## Layout
