@@ -7,15 +7,13 @@ export const GameContextProvider = ({children}) => {
   const [gameOption, setGameOption] = useState(0); // 0-x | 1-o
   const [gamePlayer, setGamePlayer] = useState(0); // 0-user | 1-cpu | 2-human
   const [gameStage, setGameStage] = useState(0);
-  console.log(gameOption) // 0-setup | 1-play | 2- gameover
 
-  const handleGameOption = () => {
+  const handleGameOption = (event) => {
     if(gameOption === 0){
       setGameOption(1);
     } else if(gameOption === 1){
       setGameOption(0);
     }
-    console.log(gameOption)
   }
 
   const handleGameStage = () => {
@@ -37,11 +35,10 @@ return (
       gameStage,
       setGameStage,
       handleGameOption,
-      handleGameStage
+      handleGameStage,
     }
     }>
     {children}
   </GameContext.Provider>
 )
-
 }

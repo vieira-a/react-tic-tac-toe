@@ -50,9 +50,11 @@ export const ButtonOption = styled.button`
   width: 100%;
   height: 4.8rem;
   border-radius: 6px;
-  background-color: ${props => props.isEnabled ? color.gunmetal['light'] : color.gunmetal[1] };
+  background-color: ${color.gunmetal[1]};
   cursor: pointer;
-  
+  &[disabled]{
+    background-color: ${color.gunmetal['light']};
+    }
 `
 export const SetPlayerSection = styled.section`
   display: flex;

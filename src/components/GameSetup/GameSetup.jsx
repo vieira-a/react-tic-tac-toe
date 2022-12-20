@@ -7,7 +7,7 @@ import ButtonX from "../Button/ButtonX";
 import ButtonO from "../Button/ButtonO";
 
 //Contetx
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { GameContext } from "../../context/GameContext";
 
 export default function GameSetup() {
@@ -21,7 +21,7 @@ export default function GameSetup() {
     gameStage,
     setGameStage, 
     handleGameOption,
-    handleGameStage
+    handleGameStage,
   } = useContext(GameContext);
 
   return (
@@ -29,7 +29,7 @@ export default function GameSetup() {
     <S.Header>
 
       <ButtonX />
-      <ButtonO />
+      <ButtonO fill={"#CE9F3F"} />
 
     </S.Header>
 
@@ -39,14 +39,14 @@ export default function GameSetup() {
 
         <S.SetupOption>
           <S.SetupButton>
-            <S.ButtonOption isEnabled disabled={gameOption === 0 ? true : false} onClick={handleGameOption}>
-              <ButtonX fill={color['charleston-green']}/>
+            <S.ButtonOption disabled={gameOption === 0 ? true : false} onClick={handleGameOption}>
+              <ButtonX />
             </S.ButtonOption>
           </S.SetupButton>
           <S.SetupButton>
 
             <S.ButtonOption disabled={gameOption === 1 ? true: false} onClick={handleGameOption}>
-              <ButtonO fill={color.gunmetal['light']}/>
+              <ButtonO />
             </S.ButtonOption>
           </S.SetupButton>
         </S.SetupOption>

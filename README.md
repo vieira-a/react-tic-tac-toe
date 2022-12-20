@@ -62,9 +62,9 @@ Inicio: 16/12/2022 | Fim: 23/12/2022
 - [ ] Criação dos componentes
   - [x] GameSetup
     - [x] Criar componentes e seus respectivos estilos
-    - [ ] Implementar funções para realizar interações necessárias
+    - [x] Implementar funções para realizar interações necessárias
       - [x] Função para selecionar a opção de início entre X e O
-        - [ ] Mudar o visual 
+        - [x] Mudar o visual 
         - [x] Desabilitar o botão quando clicado
       - [x] Função para ir para o próximo estágio do jogo após configurações inicias
   - [ ] GamePlay
