@@ -6,6 +6,7 @@ import { color, shadow } from "../UI/Colors";
 export const Header = styled.header`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 2.4rem;
 `
 
@@ -20,7 +21,15 @@ export const ButtonShowTurn = styled.button`
   background: ${color.gunmetal[4]};
   box-shadow: ${shadow.gunmetal};
   padding: 0.8rem 1.2rem;
+  border-radius: 4px;
+  display: flex;
+  gap: 0.8rem;
 `
+
+export const DivTurnIndicator = styled.div`
+  display: flex;
+`
+
 export const Text = styled.p`
   font-size:  1.2rem;
   font-weight: ${props => props.semibold ? 600 : props.bold ? 700 : 500 };

@@ -1,4 +1,6 @@
 import { createContext, useState } from "react";
+import ButtonO from "../components/Button/ButtonO";
+import ButtonX from "../components/Button/ButtonX";
 
 export const GameContext = createContext();
 
@@ -24,6 +26,14 @@ export const GameContextProvider = ({children}) => {
     }
   }
 
+  const handleGameTurn = () => {
+    if(gameOption === 0) {
+    return <ButtonX />
+    } else {
+      return <ButtonO />
+    }
+  }
+
 return (
   <GameContext.Provider 
   value={
@@ -36,6 +46,7 @@ return (
       setGameStage,
       handleGameOption,
       handleGameStage,
+      handleGameTurn,
     }
     }>
     {children}

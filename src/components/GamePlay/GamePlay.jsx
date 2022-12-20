@@ -20,7 +20,8 @@ export default function GamePlay () {
     gameStage,
     setGameStage, 
     handleGameOption,
-    handleGameStage
+    handleGameStage,
+    handleGameTurn,
   } = useContext(GameContext);
 
   console.log(gameOption )
@@ -32,8 +33,11 @@ export default function GamePlay () {
         <ButtonO />
       </S.DivLogo>
       <S.ButtonShowTurn>
+        <S.DivTurnIndicator>
+          {handleGameTurn()}
+
+        </S.DivTurnIndicator>
         <S.Text primary>turn</S.Text>
-        <span></span>
       </S.ButtonShowTurn>
       <ButtonReload />
     </S.Header>
