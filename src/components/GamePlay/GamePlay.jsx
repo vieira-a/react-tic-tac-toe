@@ -29,15 +29,12 @@ export default function GamePlay () {
   } = useContext(GameContext);
 
   const handlePlayerMove = (event) => {
-    //setPlayerMoves(playerMoves.push(event.target.id))
     setPlayerMoves((prev) => {
       return {
-        ...prev, [event.target.id]: event.target.id
+        ...prev, [event.target.id]: Number(event.target.id)
       }
     })
-    let indexMove = avaliableMoves.indexOf(event.target.id)
     setAvaliableMoves(avaliableMoves.filter(item => item != event.target.id))
-    
   }
   console.log(playerMoves)
 
@@ -69,8 +66,22 @@ export default function GamePlay () {
       <S.ButtonPlayOption onClick={handlePlayerMove} id='6'></S.ButtonPlayOption>
       <S.ButtonPlayOption onClick={handlePlayerMove} id='7'></S.ButtonPlayOption>
       <S.ButtonPlayOption onClick={handlePlayerMove} id='8'></S.ButtonPlayOption>
-      
+
     </S.DivPlayOptions>
+    <S.DivScoreBoard>
+      <S.DivScorePlayer bgGreen>
+        <S.Text sm semibold>you</S.Text>
+        <S.Text lg bold>14</S.Text>
+      </S.DivScorePlayer>
+      <S.DivScorePlayer bgGray>
+        <S.Text sm semibold>ties</S.Text>
+        <S.Text lg bold>32</S.Text>
+      </S.DivScorePlayer>
+      <S.DivScorePlayer bgGold>
+        <S.Text sm semibold>(cpu)</S.Text>
+        <S.Text lg bold>14</S.Text>
+      </S.DivScorePlayer>
+    </S.DivScoreBoard>
 
     </>
   )

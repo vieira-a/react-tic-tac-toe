@@ -32,7 +32,7 @@ export const DivTurnIndicator = styled.div`
 `
 
 export const Text = styled.p`
-  font-size:  1.2rem;
+  font-size: ${props => props.sm ? '1.2rem' : props.lg ? '1.8rem' : '1.4rem'};
   font-weight: ${props => props.semibold ? 600 : props.bold ? 700 : 500 };
   color: ${props => props.primary ? color.gunmetal['light'] : color.gunmetal[1]};
   text-transform: uppercase;
@@ -50,4 +50,28 @@ export const ButtonPlayOption = styled.button`
   border-radius: 8px;
   background-color: ${color.gunmetal[4]};
   box-shadow: ${shadow.gunmetal['lg']};
+`
+
+export const DivScoreBoard = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 3.6rem;
+`
+
+export const DivScorePlayer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.8rem 2.2rem;
+  border-radius: 8px;
+  background-color: ${props => 
+    props.bgGold ? color["satin-sheen-gold"] : 
+    props.bgGreen ? color["maximum-blue-green"] :
+    props.bgGray ? color.gunmetal['light'] : 'none'
+  };
 `
