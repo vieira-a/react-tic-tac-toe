@@ -10,7 +10,7 @@ import { useContext } from "react";
 import { GameContext } from "../../context/GameContext";
 
 export default function GamePlay () {
-
+  
   const 
   {
     gameOption, 
@@ -22,9 +22,26 @@ export default function GamePlay () {
     handleGameOption,
     handleGameStage,
     handleGameTurn,
+    playerMoves,
+    setPlayerMoves,
+    avaliableMoves,
+    setAvaliableMoves,
   } = useContext(GameContext);
 
-  console.log(gameOption )
+  const handlePlayerMove = (event) => {
+    //setPlayerMoves(playerMoves.push(event.target.id))
+    setPlayerMoves((prev) => {
+      return {
+        ...prev, [event.target.id]: event.target.id
+      }
+    })
+    let indexMove = avaliableMoves.indexOf(event.target.id)
+    setAvaliableMoves(avaliableMoves.filter(item => item != event.target.id))
+    
+  }
+  console.log(playerMoves)
+
+  
 
   return (
     <>
@@ -43,15 +60,16 @@ export default function GamePlay () {
       <ButtonReload />
     </S.Header>
     <S.DivPlayOptions>
-      <S.ButtonPlayOption></S.ButtonPlayOption>
-      <S.ButtonPlayOption></S.ButtonPlayOption>
-      <S.ButtonPlayOption></S.ButtonPlayOption>
-      <S.ButtonPlayOption></S.ButtonPlayOption>
-      <S.ButtonPlayOption></S.ButtonPlayOption>
-      <S.ButtonPlayOption></S.ButtonPlayOption>
-      <S.ButtonPlayOption></S.ButtonPlayOption>
-      <S.ButtonPlayOption></S.ButtonPlayOption>
-      <S.ButtonPlayOption></S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='0'></S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='1'></S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='2'></S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='3'></S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='4'></S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='5'></S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='6'></S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='7'></S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='8'></S.ButtonPlayOption>
+      
     </S.DivPlayOptions>
 
     </>

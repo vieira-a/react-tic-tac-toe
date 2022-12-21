@@ -68,8 +68,22 @@ Inicio: 16/12/2022 | Fim: 23/12/2022
         - [x] Desabilitar o botão quando clicado
       - [x] Função para ir para o próximo estágio do jogo após configurações inicias
   - [ ] GamePlay
-    - [ ] Criar componentes e seus respectivos estilos
+    - [x] Criar componentes e seus respectivos estilos
     - [ ] Implementar funções para realizar interações necessárias
+
+- Haverá um array contendo as jogadas disponiveis, para controlar as jogadas possiveis pela CPU. Exemplo: [0, 1, 2, 3, 4, 5, 6, 7, 8];
+- Haverá um array que armazenará as jogadas realizadas pelo usuário; o mesmo será inicializado vazio;
+
+- Quando usuario jogar:
+- [ ] Desabilita o botão clicado;
+- [x] Retira um número do array de jogadas disponíveis;
+- [x] Insere o número clicado no array de jogadas do usuário
+
+- Quando a CPU jogar:
+- [ ] Desabilita o botão escolhido;
+- [x] Retira um número do array de jogadas disponíveis;
+- [x] Insere o número clicado no array de jogadas da CPU;
+
   - [ ] GameOver
  
 ## Layout

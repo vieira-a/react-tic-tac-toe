@@ -17,7 +17,7 @@ export const Text = styled.p`
 `
 export const SetupSection = styled.section`
   padding: 1.6rem 2.4rem;
-  margin: 4.2rem 2.8rem;
+  margin-block: 4.2rem;
   background-color: ${color.gunmetal[4]};
   box-shadow: 0px 8px 0px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
@@ -61,7 +61,6 @@ export const SetPlayerSection = styled.section`
   flex-direction: column;
   align-items: center;
   gap: 1.6rem;
-  padding-inline: 2.4rem;
 `
 
 export const ButtonSetPlayer = styled.button`

@@ -9,6 +9,8 @@ export const GameContextProvider = ({children}) => {
   const [gameOption, setGameOption] = useState(0); // 0-x | 1-o
   const [gamePlayer, setGamePlayer] = useState(0); // 0-user | 1-cpu | 2-human
   const [gameStage, setGameStage] = useState(0);
+  const [playerMoves, setPlayerMoves] = useState([]);
+  const [avaliableMoves, setAvaliableMoves] = useState([0,1,2,3,4,5,6,7,8]);
 
   const handleGameOption = (event) => {
     if(gameOption === 0){
@@ -34,6 +36,8 @@ export const GameContextProvider = ({children}) => {
     }
   }
 
+  console.log(`Jogadas disponíveis ${avaliableMoves} (${avaliableMoves.length}) - Tipo: ${typeof(avaliableMoves[0])}`)
+
 return (
   <GameContext.Provider 
   value={
@@ -47,6 +51,10 @@ return (
       handleGameOption,
       handleGameStage,
       handleGameTurn,
+      playerMoves,
+      setPlayerMoves,
+      avaliableMoves,
+      setAvaliableMoves
     }
     }>
     {children}
