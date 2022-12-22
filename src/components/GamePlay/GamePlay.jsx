@@ -35,10 +35,8 @@ export default function GamePlay () {
       }
     })
     setAvaliableMoves(avaliableMoves.filter(item => item != event.target.id))
+    event.target.disabled = true;
   }
-  console.log(playerMoves)
-
-  
 
   return (
     <>
@@ -57,15 +55,42 @@ export default function GamePlay () {
       <ButtonReload />
     </S.Header>
     <S.DivPlayOptions>
-      <S.ButtonPlayOption onClick={handlePlayerMove} id='0'></S.ButtonPlayOption>
-      <S.ButtonPlayOption onClick={handlePlayerMove} id='1'></S.ButtonPlayOption>
-      <S.ButtonPlayOption onClick={handlePlayerMove} id='2'></S.ButtonPlayOption>
-      <S.ButtonPlayOption onClick={handlePlayerMove} id='3'></S.ButtonPlayOption>
-      <S.ButtonPlayOption onClick={handlePlayerMove} id='4'></S.ButtonPlayOption>
-      <S.ButtonPlayOption onClick={handlePlayerMove} id='5'></S.ButtonPlayOption>
-      <S.ButtonPlayOption onClick={handlePlayerMove} id='6'></S.ButtonPlayOption>
-      <S.ButtonPlayOption onClick={handlePlayerMove} id='7'></S.ButtonPlayOption>
-      <S.ButtonPlayOption onClick={handlePlayerMove} id='8'></S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='0'>
+        {JSON.stringify(playerMoves).includes(0) && gameOption === 0 ? <ButtonX /> : ''}
+        {JSON.stringify(playerMoves).includes(0) && gameOption === 1 ? <ButtonO /> : ''}
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='1'>
+        {JSON.stringify(playerMoves).includes(1) && gameOption === 0 ? <ButtonX /> : ''}
+        {JSON.stringify(playerMoves).includes(1) && gameOption === 1 ? <ButtonO /> : ''}
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='2'>
+        {JSON.stringify(playerMoves).includes(2) && gameOption === 0 ? <ButtonX /> : ''}
+        {JSON.stringify(playerMoves).includes(2) && gameOption === 1 ? <ButtonO /> : ''}
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='3'>
+        {JSON.stringify(playerMoves).includes(3) && gameOption === 0 ? <ButtonX /> : ''}
+        {JSON.stringify(playerMoves).includes(3) && gameOption === 1 ? <ButtonX /> : ''}
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='4'>
+        {JSON.stringify(playerMoves).includes(4) && gameOption === 0 ? <ButtonX /> : ''}
+        {JSON.stringify(playerMoves).includes(4) && gameOption === 1 ? <ButtonX /> : ''}
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='5'>
+        {JSON.stringify(playerMoves).includes(5) && gameOption === 0 ? <ButtonX /> : ''}
+        {JSON.stringify(playerMoves).includes(5) && gameOption === 1 ? <ButtonX /> : ''}
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='6'>
+        {JSON.stringify(playerMoves).includes(6) && gameOption === 0 ? <ButtonX /> : ''}
+        {JSON.stringify(playerMoves).includes(6) && gameOption === 1 ? <ButtonX /> : ''}
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='7'>
+        {JSON.stringify(playerMoves).includes(7) && gameOption === 0 ? <ButtonX /> : ''}
+        {JSON.stringify(playerMoves).includes(7) && gameOption === 1 ? <ButtonX /> : ''}
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption onClick={handlePlayerMove} id='8'>
+        {JSON.stringify(playerMoves).includes(8) && gameOption === 0 ? <ButtonX /> : ''}
+        {JSON.stringify(playerMoves).includes(8) && gameOption === 1 ? <ButtonX /> : ''}
+        </S.ButtonPlayOption>
 
     </S.DivPlayOptions>
     <S.DivScoreBoard>
