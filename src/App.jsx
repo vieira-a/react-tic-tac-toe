@@ -11,7 +11,7 @@ import GamePlay from "./components/GamePlay/GamePlay";
 import GameOver from "./components/GameOver/GameOver";
 
 function App() {
-  
+
   const { gameStage } = useContext(GameContext);
   
   return (

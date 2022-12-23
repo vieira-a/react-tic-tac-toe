@@ -1,21 +1,38 @@
 //Styles
 import * as S from './styles';
-import { color } from '../UI/Colors';
 
 //Components
 import ButtonX from "../Button/ButtonX";
 import ButtonO from "../Button/ButtonO";
 
 //Contetx
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { GameContext } from "../../context/GameContext";
 
 export default function GameSetup() {
 
   const 
   {
-    gameOption, 
-    setGameOption, 
+    /**Refactoring */
+    playerOption,
+    setPlayerOption,
+    cpuOption,
+    setCpuOption,
+    humanOption,
+    setHumanOption,
+    player1,
+    setPlayer1,
+    player2,
+    setPlayer2,
+    playerTurn,
+    setPlayerTurn,
+    player1Moves,
+    setPlayer1Moves,
+    player2Moves,
+    setPlayer2Moves,
+    setupGameOptions,
+    startGame,
+    /**End of refactoring */
     gamePlayer, 
     setGamePlayer,
     gameStage,
@@ -39,13 +56,13 @@ export default function GameSetup() {
 
         <S.SetupOption>
           <S.SetupButton>
-            <S.ButtonOption disabled={gameOption === 0 ? true : false} onClick={handleGameOption}>
+            <S.ButtonOption disabled={playerOption === 0 ? true : false} onClick={setupGameOptions}>
               <ButtonX />
             </S.ButtonOption>
           </S.SetupButton>
           <S.SetupButton>
 
-            <S.ButtonOption disabled={gameOption === 1 ? true: false} onClick={handleGameOption}>
+            <S.ButtonOption disabled={playerOption === 1 ? true: false} onClick={setupGameOptions}>
               <ButtonO />
             </S.ButtonOption>
           </S.SetupButton>
@@ -57,12 +74,12 @@ export default function GameSetup() {
 
     <S.SetPlayerSection>
 
-      <S.ButtonSetPlayer bgGold shadowGold onClick={handleGameStage}>
-        <S.Text bold>new game (vs cpu)</S.Text>
+      <S.ButtonSetPlayer id='1' bgGold shadowGold onClick={startGame}>
+        new game (vs cpu)
       </S.ButtonSetPlayer>
 
-      <S.ButtonSetPlayer bgGreen shadowGreen onClick={handleGameStage}>
-        <S.Text bold>new game (vs player)</S.Text>
+      <S.ButtonSetPlayer id='2' bgGreen shadowGreen onClick={startGame}>
+        new game (vs player)
       </S.ButtonSetPlayer>
 
     </S.SetPlayerSection>
