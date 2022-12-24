@@ -1,4 +1,5 @@
 import * as S from './styles';
+import { color } from '../UI/Colors';
 
 //Components
 import ButtonX from "../Button/ButtonX";
@@ -51,6 +52,8 @@ export default function GamePlay () {
 
     if(playerTurn === player1) {
       event.target.innerHTML = 'X'
+      event.target.style.color = color['satin-sheen-gold']
+      console.log(event.target.style)
       setPlayer1Moves((prev) => {
         return {
           ...prev, [event.target.id] : event.target.id
@@ -61,6 +64,7 @@ export default function GamePlay () {
       
     } else if(playerTurn === player2) { 
       event.target.innerHTML = 'O'
+      event.target.style.color = color['maximum-blue-green']
       setPlayer2Moves((prev) => {
         return {
           ...prev, [event.target.id] : event.target.id

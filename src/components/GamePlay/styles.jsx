@@ -50,8 +50,10 @@ export const ButtonPlayOption = styled.button`
   border-radius: 8px;
   background-color: ${color.gunmetal[4]};
   box-shadow: ${shadow.gunmetal['lg']};
-  font-size: 4rem;
-  font-weight: bold;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 4.8rem;
+  font-weight: 700;
+  color: ${props => props.buttonx ? color["satin-sheen-gold"] : props.buttono ? color["maximum-blue-green"] : 'none'}
 `
 
 export const DivScoreBoard = styled.div`
