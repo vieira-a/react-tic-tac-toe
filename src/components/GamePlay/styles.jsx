@@ -50,6 +50,8 @@ export const ButtonPlayOption = styled.button`
   border-radius: 8px;
   background-color: ${color.gunmetal[4]};
   box-shadow: ${shadow.gunmetal['lg']};
+  font-size: 4rem;
+  font-weight: bold;
 `
 
 export const DivScoreBoard = styled.div`

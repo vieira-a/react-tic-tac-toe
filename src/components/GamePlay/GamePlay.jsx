@@ -47,38 +47,31 @@ export default function GamePlay () {
   const [player1Moves, setPlayer1Moves] = useState([]);
   const [player2Moves, setPlayer2Moves] = useState([]);
 
-  
   const handlePlayerMove = (event) => {
-    
+
     if(playerTurn === player1) {
-      setPlayerTurn(player2)
+      event.target.innerHTML = 'X'
       setPlayer1Moves((prev) => {
         return {
           ...prev, [event.target.id] : event.target.id
         }
       })
       event.target.disabled = true;
+      setPlayerTurn(player2)
       
-      
-    }
-    if(playerTurn === player2) { 
-      setPlayerTurn(player1)
+    } else if(playerTurn === player2) { 
+      event.target.innerHTML = 'O'
       setPlayer2Moves((prev) => {
         return {
           ...prev, [event.target.id] : event.target.id
         }
       })
       event.target.disabled = true;
-      
-      
+      setPlayerTurn(player1)
     }
-    
     setAvaliableMoves(avaliableMoves.filter(item => item != event.target.id))
-    
   }
 
-  
-  
   console.log(player1Moves)
   console.log(player2Moves)
 
