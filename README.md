@@ -59,7 +59,7 @@ Inicio: 16/12/2022 | Fim: 23/12/2022
   - [x] Configurar arquivos iniciais e instalar dependências
   - [x] Planejar arquitetura do projeto, definindo estrutura de arquivos
   - [x] Construir README
-- [ ] Criação dos componentes
+- [x] Criação dos componentes
   - [x] GameSetup
     - [x] Criar componentes e seus respectivos estilos
     - [x] Implementar funções para realizar interações necessárias
@@ -70,12 +70,12 @@ Inicio: 16/12/2022 | Fim: 23/12/2022
   - [ ] GamePlay
     - [x] Criar componentes e seus respectivos estilos
     - [ ] Implementar funções para realizar interações necessárias
-
+git
 - Haverá um array contendo as jogadas disponiveis, para controlar as jogadas possiveis pela CPU. Exemplo: [0, 1, 2, 3, 4, 5, 6, 7, 8];
 - Haverá um array que armazenará as jogadas realizadas pelo usuário; o mesmo será inicializado vazio;
 
 - Quando usuario jogar:
-- [ ] Desabilita o botão clicado;
+- [x] Desabilita o botão clicado;
 - [x] Retira um número do array de jogadas disponíveis;
 - [x] Insere o número clicado no array de jogadas do usuário
 
@@ -83,6 +83,14 @@ Inicio: 16/12/2022 | Fim: 23/12/2022
 - [ ] Desabilita o botão escolhido;
 - [x] Retira um número do array de jogadas disponíveis;
 - [x] Insere o número clicado no array de jogadas da CPU;
+
+- Verificar condição de vitória
+Haveram arrays contendo todas as combinações possíveis que levam um dos jogadores à vitória; cada array será composto por 3 jogadas cada. 
+Uma condição de vitória será satisfeita quando um dos jogadores atingir as jogadas necessárias de acordo com os arrays.
+Os elementos de cada array das condições de vitória serão checados para verificar se fazem parte das opções jogadas pelo usuário. Caso os 3 elementos de um dos arrays estejam incluídos entre as jogadas feitas pelo usuário, tem-se o vencedor.
+
+- [x] Função para checar jogadas do Player 1
+- [ ] Função para checar jogadas do Player 2
 
   - [ ] GameOver
  
