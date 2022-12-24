@@ -53,12 +53,12 @@ export default function GamePlay () {
     if(playerTurn === player1) {
       event.target.innerHTML = 'X'
       event.target.style.color = color['satin-sheen-gold']
-      console.log(event.target.style)
       setPlayer1Moves((prev) => {
         return {
           ...prev, [event.target.id] : event.target.id
         }
       })
+
       event.target.disabled = true;
       setPlayerTurn(player2)
       
@@ -76,8 +76,43 @@ export default function GamePlay () {
     setAvaliableMoves(avaliableMoves.filter(item => item != event.target.id))
   }
 
-  console.log(player1Moves)
-  console.log(player2Moves)
+  /**
+   * Preparing victory condition. It will be one function by player
+   * I need to verify if some of victory conditions arrays are part of player array during the game, from the third play
+   * First: get only values of object playerMove and create a new array to it
+   * Second: compare the arrays
+   */
+  let player1Amount = []
+  const victoryCondition = ['1', '2', '3']
+
+  const handlePlayer1Moves = () => {
+    for(let key in player1Moves) {
+      player1Amount.push(key)
+    }
+    console.log(player1Amount)
+    useCallback(()=>{
+      
+    }, [player1Moves])
+  }
+
+  let player1VictoryConditionSatisfied = 0
+  const handleVictoryCondition = () => {
+    for(let move in victoryCondition){
+      if(player1Amount.includes(move)){
+        player1VictoryConditionSatisfied ++
+      }
+    if(player1VictoryConditionSatisfied === 3){
+      console.log('Player 1 venceu')
+    }
+    }
+
+    useCallback(() => {
+      
+    }, [handlePlayer1Moves])
+  }
+  
+  handlePlayer1Moves()
+  handleVictoryCondition()
 
   return (
     <>
