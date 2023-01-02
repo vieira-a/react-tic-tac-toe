@@ -82,37 +82,37 @@ export default function GamePlay () {
    * First: get only values of object playerMove and create a new array to it
    * Second: compare the arrays
    */
-  let player1Amount = []
-  const victoryCondition = ['1', '2', '3']
 
+  let player1Amount = []
+
+  const victoryCondition = ['0', '3', '6']
+  
   const handlePlayer1Moves = () => {
+    
     for(let key in player1Moves) {
-      player1Amount.push(key)
+
+      if(victoryCondition.includes(key)){
+        player1Amount.push(key)
+      }
+
+      gameWinner(player1Amount)
+
     }
+
     console.log(player1Amount)
     useCallback(()=>{
       
     }, [player1Moves])
   }
-
-  let player1VictoryConditionSatisfied = 0
-  const handleVictoryCondition = () => {
-    for(let move in victoryCondition){
-      if(player1Amount.includes(move)){
-        player1VictoryConditionSatisfied ++
-      }
-    if(player1VictoryConditionSatisfied === 3){
-      console.log('Player 1 venceu')
-    }
-    }
-
-    useCallback(() => {
-      
-    }, [handlePlayer1Moves])
-  }
   
+  const gameWinner = (moves) => {
+    if(moves.length === 3){
+      console.log('player 1 wins')
+    }
+
+  }
+
   handlePlayer1Moves()
-  handleVictoryCondition()
 
   return (
     <>
