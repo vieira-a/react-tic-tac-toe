@@ -83,36 +83,72 @@ export default function GamePlay () {
    * Second: compare the arrays
    */
 
-  let player1Amount = []
+   const victoryConditions = [
+    ['0', '1', '2'],
+    ['0', '3', '6'],
+    ['0', '4', '8'],
+    ['1', '4', '7'],
+    ['2', '4', '6'],
+    ['2', '5', '8'],
+    ['3', '4', '5'],
+    ['6', '7', '8'],
+    ['5', '6', '8']
+  ]
 
-  const victoryCondition = ['0', '3', '6']
-  
+  function verificaArrayPlayer (arrOrig, arrDest, player) {
+    
+    for(let i = 0; i < arrDest.length; i++) {
+      
+      let counter = 0
+
+      for(let item of arrOrig) {
+      
+        if(arrDest[i].includes(item)) {
+          counter += 1
+          console.log(`Array número ${[i]}: ${arrDest[i]} --- Itens: ${item} --- Contador: ${counter}`)
+      } 
+      if(counter === 3){
+        console.log(`${player} wins`)
+      }
+    }
+    }
+
+    useCallback(() => {
+
+    }, [handlePlayerMove])
+
+  }
+
+  let player1Amount = []
+  let player2Amount = []
+
   const handlePlayer1Moves = () => {
     
     for(let key in player1Moves) {
-
-      if(victoryCondition.includes(key)){
-        player1Amount.push(key)
-      }
-
-      gameWinner(player1Amount)
-
+      player1Amount.push(key)
     }
 
-    console.log(player1Amount)
     useCallback(()=>{
       
     }, [player1Moves])
   }
-  
-  const gameWinner = (moves) => {
-    if(moves.length === 3){
-      console.log('player 1 wins')
+
+  const handlePlayer2Moves = () => {
+    
+    for(let key in player2Moves) {
+      player2Amount.push(key)
+      
     }
 
+    useCallback(()=>{
+      
+    }, [player2Moves])
   }
 
   handlePlayer1Moves()
+  handlePlayer2Moves()
+  verificaArrayPlayer(player1Amount, victoryConditions, 'Player 1')
+  verificaArrayPlayer(player2Amount, victoryConditions, 'Player 2')
 
   return (
     <>
