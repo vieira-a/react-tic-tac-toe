@@ -9,14 +9,13 @@ export const GameContextProvider = ({children}) => {
   /**
    * Refactoting
    */
-
+  
   const [playerOption, setPlayerOption] = useState(0);
   const [cpuOption, setCpuOption] = useState(1);
   const [humanOption, setHumanOption] = useState(null);
   const [player1, setPlayer1] = useState('player');
   const [player2, setPlayer2] = useState('cpu');
   const [playerTurn, setPlayerTurn] = useState(player1);
-
 
   function setupGameOptions() {
 
@@ -25,14 +24,14 @@ export const GameContextProvider = ({children}) => {
       setCpuOption(0);
       setPlayer1('cpu');
       setPlayer2('player');
-      setPlayerTurn(player2)
+      setPlayerTurn('player2')
       
     } else {
       setPlayerOption(0);
       setCpuOption(1);
       setPlayer1('player');
       setPlayer2('cpu');
-      setPlayerTurn(player1)
+      setPlayerTurn('player1')
       
     }
   }
@@ -47,7 +46,7 @@ export const GameContextProvider = ({children}) => {
       setPlayer1('cpu');
       setPlayer2('player');
       setPlayerTurn('cpu')
-      setPlayerTurn(player1)
+      setPlayerTurn('player1')
       
     } else if(playerOption === 0 && event.target.id === '2'){
       setPlayerOption(0);
@@ -56,7 +55,7 @@ export const GameContextProvider = ({children}) => {
       
       setPlayer1('player');
       setPlayer2('human');
-      setPlayerTurn(player1)
+      setPlayerTurn('player1')
 
     } else if(playerOption === 1 && event.target.id === '2'){
       
@@ -66,7 +65,7 @@ export const GameContextProvider = ({children}) => {
       
       setPlayer1('human');
       setPlayer2('player');
-      setPlayerTurn(player1)
+      setPlayerTurn('player1')
       
       }
 

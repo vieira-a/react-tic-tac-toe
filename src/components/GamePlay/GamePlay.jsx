@@ -50,7 +50,7 @@ export default function GamePlay () {
   
   const handlePlayerMove = (event) => {
 
-    if(playerTurn === player1) {
+    if(playerTurn === 'player1') {
       event.target.innerHTML = 'X'
       event.target.style.color = color['satin-sheen-gold']
       setPlayer1Moves((prev) => {
@@ -60,9 +60,9 @@ export default function GamePlay () {
       })
 
       event.target.disabled = true;
-      setPlayerTurn(player2)
+      setPlayerTurn('player2')
       
-    } else if(playerTurn === player2) { 
+    } else if(playerTurn === 'player2') { 
       event.target.innerHTML = 'O'
       event.target.style.color = color['maximum-blue-green']
       setPlayer2Moves((prev) => {
@@ -71,7 +71,7 @@ export default function GamePlay () {
         }
       })
       event.target.disabled = true;
-      setPlayerTurn(player1)
+      setPlayerTurn('player1')
     }
     setAvaliableMoves(avaliableMoves.filter(item => item != event.target.id))
   }
@@ -94,22 +94,48 @@ export default function GamePlay () {
     ['6', '7', '8']
   ]
 
+  const scorePlayers = {
+    player1: 0,
+    player2: 0,
+    tie: 0
+  }
+
+  const scorePlayer1 = document.getElementById('player1-score');
+  const scorePlayer2 = document.getElementById('player2-score');
+  const scoreTie = document.getElementById('tie-score');
+  
+  function updateScorePlayers() {
+    let declareTie = 0
+    scorePlayer1.innerHTML = scorePlayers.player1;
+    scorePlayer2.innerHTML = scorePlayers.player2;
+    if(scorePlayers.tie === 72){
+      declareTie ++
+    }
+    scoreTie.innerHTML = declareTie
+  }
+
   function checkWinCondition (arrOrig, arrDest, player) {
-    
     for(let i = 0; i < arrDest.length; i++) {
       
       let counter = 0
-
+      
       for(let item of arrOrig) {
       
         if(arrDest[i].includes(item)) {
           counter += 1
-          console.log(`Array número ${[i]}: ${arrDest[i]} --- Itens: ${item} --- Contador: ${counter}`)
+          
       } 
       if(counter === 3){
-        console.log(`${player} wins`)
+        scorePlayers[player] += 1
+        updateScorePlayers()
+        
+      } else {
+        scorePlayers.tie += 1
+        updateScorePlayers()
       }
+      
     }
+    
     }
 
     useCallback(() => {
@@ -146,8 +172,8 @@ export default function GamePlay () {
 
   handlePlayer1Moves()
   handlePlayer2Moves()
-  checkWinCondition(player1Amount, victoryConditions, 'Player 1')
-  checkWinCondition(player2Amount, victoryConditions, 'Player 2')
+  checkWinCondition(player1Amount, victoryConditions, 'player1')
+  checkWinCondition(player2Amount, victoryConditions, 'player2')
 
   return (
     <>
@@ -190,15 +216,15 @@ export default function GamePlay () {
     <S.DivScoreBoard>
       <S.DivScorePlayer bgGreen>
         <S.Text sm semibold>you</S.Text>
-        <S.Text lg bold>14</S.Text>
+        <S.Text id='player1-score' lg bold>0</S.Text>
       </S.DivScorePlayer>
       <S.DivScorePlayer bgGray>
         <S.Text sm semibold>ties</S.Text>
-        <S.Text lg bold>32</S.Text>
+        <S.Text id='tie-score' lg bold>0</S.Text>
       </S.DivScorePlayer>
       <S.DivScorePlayer bgGold>
         <S.Text sm semibold>(cpu)</S.Text>
-        <S.Text lg bold>14</S.Text>
+        <S.Text id='player2-score' lg bold>0</S.Text>
       </S.DivScorePlayer>
     </S.DivScoreBoard>
 

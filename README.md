@@ -97,9 +97,12 @@ Inicio: 02/01/2023 | Fim: 09/01/2023
 
 *GamePlay*
 
-- [ ] Criar lista com todas as condições de vitória possíveis
-- [ ] Criar função para validar condição de vitória para cada jogador
-- [ ] Criar função para manipular o placar durante as seções de jogo
+- [x] Criar lista com todas as condições de vitória possíveis
+- [x] Criar função para validar condição de vitória para cada jogador
+- [ ] Criar função para atualizar o placar durante as seções de jogo
+  - [x] Placar do Player 1
+  - [x] Placar do Player 2
+  - [ ] Placar do empate
 
 *GameOver*
 
