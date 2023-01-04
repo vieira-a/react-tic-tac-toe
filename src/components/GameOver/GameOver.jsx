@@ -1,5 +1,8 @@
+import * as S from './styles';
+
 export default function GameOver() {
+  console.log("Estou no componente Game Over")
   return (
-    <p>Game Over</p>
+    <h1>GameOver</h1>
   )
 }

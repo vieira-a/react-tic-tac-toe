@@ -7,7 +7,7 @@ import ButtonO from "../Button/ButtonO";
 import ButtonReload from '../Button/ButtonReload';
 
 //Context
-import React, { useContext, useState, useCallback, useMemo } from "react";
+import React, { useContext, useState, useCallback, useMemo, useEffect } from "react";
 import { GameContext } from "../../context/GameContext";
 
 export default function GamePlay () {
@@ -100,52 +100,12 @@ export default function GamePlay () {
     tie: 0
   }
 
-  const scorePlayer1 = document.getElementById('player1-score');
-  const scorePlayer2 = document.getElementById('player2-score');
-  const scoreTie = document.getElementById('tie-score');
-  
-  function updateScorePlayers() {
-    let declareTie = 0
-    scorePlayer1.innerHTML = scorePlayers.player1;
-    scorePlayer2.innerHTML = scorePlayers.player2;
-    if(scorePlayers.tie === 72){
-      declareTie ++
-    }
-    scoreTie.innerHTML = declareTie
-  }
+  const scoreBoardPlayer1 = document.getElementById('player1-score');
+  const scoreBoardPlayer2 = document.getElementById('player2-score');
+  const scoreBoardTie = document.getElementById('tie-score');
 
-  function checkWinCondition (arrOrig, arrDest, player) {
-    for(let i = 0; i < arrDest.length; i++) {
-      
-      let counter = 0
-      
-      for(let item of arrOrig) {
-      
-        if(arrDest[i].includes(item)) {
-          counter += 1
-          
-      } 
-      if(counter === 3){
-        scorePlayers[player] += 1
-        updateScorePlayers()
-        
-      } else {
-        scorePlayers.tie += 1
-        updateScorePlayers()
-      }
-      
-    }
-    
-    }
-
-    useCallback(() => {
-
-    }, [handlePlayerMove])
-
-  }
-
-  let player1Amount = []
-  let player2Amount = []
+  const player1Amount = []
+  const player2Amount = []
 
   const handlePlayer1Moves = () => {
     
@@ -168,6 +128,54 @@ export default function GamePlay () {
     useCallback(()=>{
       
     }, [player2Moves])
+  }
+
+  function checkWinCondition (arrOrig, arrDest, player, status) {
+    
+    for(let i = 0; i < arrDest.length; i++) {
+      let counter = 0
+      for(let item of arrOrig) {
+        if(arrDest[i].includes(item)) {
+          counter += 1
+      } 
+      if(counter === 3){
+        scorePlayers[player] += 1
+        updateScorePlayers()
+        
+      } else {
+        scorePlayers.tie += 1
+        updateScorePlayers()   
+      } 
+    }
+
+    useEffect(()=> {
+      console.log('Counter:', counter)
+      console.log('Tie:', scorePlayers.tie)
+      
+      if(counter === 3 || scorePlayers.tie === 72) {
+        
+        setGameStage(2)
+      }
+  
+    }, [counter, scorePlayers.tie])
+    
+    }
+    
+    useCallback(() => {
+      
+    }, [handlePlayerMove])
+  }
+    
+  function updateScorePlayers() {
+    let scoreTie = 0
+    scoreBoardPlayer1.innerHTML = scorePlayers.player1;
+    scoreBoardPlayer2.innerHTML = scorePlayers.player2;
+    
+    if(scorePlayers.tie === 72){
+      scoreTie ++
+    }
+    scoreBoardTie.innerHTML = scoreTie
+    
   }
 
   handlePlayer1Moves()
@@ -227,6 +235,9 @@ export default function GamePlay () {
         <S.Text id='player2-score' lg bold>0</S.Text>
       </S.DivScorePlayer>
     </S.DivScoreBoard>
+    {/* <S.ButtonPlayOption id='game-over' onClick={gameOver}>
+      Game over
+    </S.ButtonPlayOption> */}
 
     </>
   )
