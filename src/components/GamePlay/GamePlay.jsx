@@ -7,7 +7,7 @@ import ButtonO from "../Button/ButtonO";
 import ButtonReload from '../Button/ButtonReload';
 
 //Context
-import React, { useContext, useState, useCallback, useMemo, useEffect } from "react";
+import React, { useContext, useState, useCallback, useEffect } from "react";
 import { GameContext } from "../../context/GameContext";
 
 export default function GamePlay () {
@@ -194,7 +194,10 @@ export default function GamePlay () {
       btn.innerHTML = ''
       btn.disabled = false;
     })
-    
+  }
+
+  function quitGame() {
+    window.location.reload()
   }
 
   // console.log('Player 1 move: ', player1Moves)
@@ -209,14 +212,14 @@ export default function GamePlay () {
     <>
      <S.DivGameOver hidden id='game-over-div'>
       <S.DivGameOverBoard>
-        <S.Text primary>you won!</S.Text>
-        <S.Text lg green>takes the round</S.Text>
+        <S.Text primary>final de jogo</S.Text>
+        <S.Text lg green>jogar de novo?</S.Text>
         <S.DivGameOverButtons>
-          <S.GameOverButtonQuit>
-            <S.Text bold>quit</S.Text>
+          <S.GameOverButtonQuit onClick={quitGame}>
+            <S.Text bold>sair</S.Text>
             </S.GameOverButtonQuit>
           <S.GameOverButtonNextRound onClick={nextRound}>
-            <S.Text bold>next round</S.Text>
+            <S.Text bold>próxima rodada</S.Text>
           </S.GameOverButtonNextRound>
         </S.DivGameOverButtons>
       </S.DivGameOverBoard>
@@ -258,18 +261,22 @@ export default function GamePlay () {
 
     </S.DivPlayOptions>
     <S.DivScoreBoard>
-      <S.DivScorePlayer bgGreen>
-        <S.Text sm semibold>you</S.Text>
-        <S.Text id='player1-score' lg bold>{scoreBoardUpdatedPlayer1()}</S.Text>
-      </S.DivScorePlayer>
-      <S.DivScorePlayer bgGray>
-        <S.Text sm semibold>ties</S.Text>
-        <S.Text id='tie-score' lg bold>0</S.Text>
-      </S.DivScorePlayer>
+
       <S.DivScorePlayer bgGold>
-        <S.Text sm semibold>(cpu)</S.Text>
+        <S.Text sm semibold>(X)</S.Text>
         <S.Text id='player2-score' lg bold>{scoreBoardUpdatedPlayer2()}</S.Text>
       </S.DivScorePlayer>
+
+      <S.DivScorePlayer bgGray>
+        <S.Text sm semibold>empate</S.Text>
+        <S.Text id='tie-score' lg bold>0</S.Text>
+      </S.DivScorePlayer>
+
+      <S.DivScorePlayer bgGreen>
+        <S.Text sm semibold>(O)</S.Text>
+        <S.Text id='player1-score' lg bold>{scoreBoardUpdatedPlayer1()}</S.Text>
+      </S.DivScorePlayer>
+      
     </S.DivScoreBoard>
     
     {/* <S.ButtonPlayOption id='game-over' onClick={gameOver}>

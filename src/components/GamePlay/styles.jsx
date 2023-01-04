@@ -53,7 +53,7 @@ export const ButtonPlayOption = styled.button`
   font-family: 'Fredoka', sans-serif;
   font-size: 4.8rem;
   font-weight: 700;
-  color: ${props => props.buttonx ? color["satin-sheen-gold"] : props.buttono ? color["maximum-blue-green"] : 'none'}
+  color: ${props => props.buttonx ? color["satin-sheen-gold"] : props.buttono ? color["maximum-blue-green"] : 'none'};
 `
 
 export const DivScoreBoard = styled.div`
@@ -89,7 +89,7 @@ export const DivGameOver = styled.div`
   left: 0;
   top: 20.5rem;
   background-color: ${color.gunmetal['4']};
-  visibility: ${props => props.hidden ? 'hidden' : 'visible'};
+  visibility: ${props => props.hidden ? 'hidden': 'visible'};
 `
 
 export const DivGameOverBoard = styled.div`

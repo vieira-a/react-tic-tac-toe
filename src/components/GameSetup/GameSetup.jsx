@@ -52,7 +52,7 @@ export default function GameSetup() {
 
     <S.SetupSection>
         
-        <S.Text semibold primary>pick player 1' mark</S.Text>
+        <S.Text semibold primary>escolha um jogador</S.Text>
 
         <S.SetupOption>
           <S.SetupButton>
@@ -68,18 +68,19 @@ export default function GameSetup() {
           </S.SetupButton>
         </S.SetupOption>
 
-        <S.Text semibold primary>remember: x goes first</S.Text>
+        <S.Text semibold primary>lembre-se: x começa</S.Text>
 
     </S.SetupSection>
 
     <S.SetPlayerSection>
 
       <S.ButtonSetPlayer id='1' bgGold shadowGold onClick={startGame}>
-        new game (vs cpu)
+        <S.Text>novo jogo (vs cpu)</S.Text>
+        
       </S.ButtonSetPlayer>
 
       <S.ButtonSetPlayer id='2' bgGreen shadowGreen onClick={startGame}>
-        new game (vs player)
+        <S.Text>novo jogo (vs humano)</S.Text>
       </S.ButtonSetPlayer>
 
     </S.SetPlayerSection>
