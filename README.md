@@ -99,16 +99,18 @@ Inicio: 02/01/2023 | Fim: 09/01/2023
 
 - [x] Criar lista com todas as condições de vitória possíveis
 - [x] Criar função para validar condição de vitória para cada jogador
-- [ ] Criar função para atualizar o placar durante as seções de jogo
+- [x] Criar função para atualizar o placar durante as seções de jogo
   - [x] Placar do Player 1
   - [x] Placar do Player 2
-  - [ ] Placar do empate
+  - [x] Placar do empate
+- [x] Criar função para renderizar o componente GameOver ao finalizar as jogadas (empate), ou caso um dos jogadores vença.
 
 *GameOver*
 
-- [ ] Criar modal para apresentar o resultado do jogo
-  - [ ] Criar função para permitir continuar jogando (um novo jogo será iniciado incrementando a contagem do placar)
-  - [ ] Criar função para reiniciar o jogo, zerando o placar.
+- [ ] Criar componente conforme layout para apresentar o resultado do jogo
+- [ ] Criar condições para um novo jogo
+  - [ ] Permitir continuar jogando (um novo jogo será iniciado incrementando a contagem do placar)
+  - [ ] Reiniciar o jogo, zerando o placar.
 
 ## Layout
 
