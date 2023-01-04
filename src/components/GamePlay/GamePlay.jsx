@@ -100,12 +100,12 @@ export default function GamePlay () {
     tie: 0
   }
 
-  const scoreBoardPlayer1 = document.getElementById('player1-score');
-  const scoreBoardPlayer2 = document.getElementById('player2-score');
   const scoreBoardTie = document.getElementById('tie-score');
-
-  const player1Amount = []
-  const player2Amount = []
+  const divGameOver = document.getElementById('game-over-div');
+  const buttonOption = document.querySelectorAll('.btn-option');
+  
+  let player1Amount = []
+  let player2Amount = []
 
   const handlePlayer1Moves = () => {
     
@@ -149,12 +149,10 @@ export default function GamePlay () {
     }
 
     useEffect(()=> {
-      console.log('Counter:', counter)
-      console.log('Tie:', scorePlayers.tie)
       
       if(counter === 3 || scorePlayers.tie === 72) {
-        
-        setGameStage(2)
+        divGameOver.style.visibility = 'visible';
+        //setGameStage(2)
       }
   
     }, [counter, scorePlayers.tie])
@@ -164,19 +162,43 @@ export default function GamePlay () {
     useCallback(() => {
       
     }, [handlePlayerMove])
+
+    //console.log(scorePlayers)
   }
-    
+  
   function updateScorePlayers() {
     let scoreTie = 0
-    scoreBoardPlayer1.innerHTML = scorePlayers.player1;
-    scoreBoardPlayer2.innerHTML = scorePlayers.player2;
     
     if(scorePlayers.tie === 72){
       scoreTie ++
     }
     scoreBoardTie.innerHTML = scoreTie
+  
+  }
+
+  function scoreBoardUpdatedPlayer1 () {
+    return scorePlayers.player1
+  }
+
+  function scoreBoardUpdatedPlayer2 () {
+    return scorePlayers.player2
+  }
+
+  function nextRound () {
+    divGameOver.style.visibility = 'hidden';
+    setPlayer1Moves([]);
+    setPlayer2Moves([]);
+    player1Amount = [];
+    player2Amount = [];
+    buttonOption.forEach((btn) => {
+      btn.innerHTML = ''
+      btn.disabled = false;
+    })
     
   }
+
+  // console.log('Player 1 move: ', player1Moves)
+  // console.log('Player1 amount: ', player1Amount)
 
   handlePlayer1Moves()
   handlePlayer2Moves()
@@ -185,6 +207,20 @@ export default function GamePlay () {
 
   return (
     <>
+     <S.DivGameOver hidden id='game-over-div'>
+      <S.DivGameOverBoard>
+        <S.Text primary>you won!</S.Text>
+        <S.Text lg green>takes the round</S.Text>
+        <S.DivGameOverButtons>
+          <S.GameOverButtonQuit>
+            <S.Text bold>quit</S.Text>
+            </S.GameOverButtonQuit>
+          <S.GameOverButtonNextRound onClick={nextRound}>
+            <S.Text bold>next round</S.Text>
+          </S.GameOverButtonNextRound>
+        </S.DivGameOverButtons>
+      </S.DivGameOverBoard>
+     </S.DivGameOver>
     <S.Header>
       <S.DivLogo>
         <ButtonX />
@@ -201,30 +237,30 @@ export default function GamePlay () {
     </S.Header>
     <S.DivPlayOptions>
      
-      <S.ButtonPlayOption id='0' onClick={handlePlayerMove}>
+      <S.ButtonPlayOption className='btn-option' id='0' onClick={handlePlayerMove}>
       </S.ButtonPlayOption>
-      <S.ButtonPlayOption id='1' onClick={handlePlayerMove}>
+      <S.ButtonPlayOption className='btn-option' id='1' onClick={handlePlayerMove}>
         </S.ButtonPlayOption>
-      <S.ButtonPlayOption id='2' onClick={handlePlayerMove}>
+      <S.ButtonPlayOption className='btn-option' id='2' onClick={handlePlayerMove}>
         </S.ButtonPlayOption>
-      <S.ButtonPlayOption id='3' onClick={handlePlayerMove}>
+      <S.ButtonPlayOption className='btn-option' id='3' onClick={handlePlayerMove}>
         </S.ButtonPlayOption>
-      <S.ButtonPlayOption id='4' onClick={handlePlayerMove}>
+      <S.ButtonPlayOption className='btn-option' id='4' onClick={handlePlayerMove}>
         </S.ButtonPlayOption>
-      <S.ButtonPlayOption id='5' onClick={handlePlayerMove}>
+      <S.ButtonPlayOption className='btn-option' id='5' onClick={handlePlayerMove}>
         </S.ButtonPlayOption>
-      <S.ButtonPlayOption id='6' onClick={handlePlayerMove}>
+      <S.ButtonPlayOption className='btn-option' id='6' onClick={handlePlayerMove}>
         </S.ButtonPlayOption>
-      <S.ButtonPlayOption id='7' onClick={handlePlayerMove}>
+      <S.ButtonPlayOption className='btn-option' id='7' onClick={handlePlayerMove}>
         </S.ButtonPlayOption>
-      <S.ButtonPlayOption id='8' onClick={handlePlayerMove}>
+      <S.ButtonPlayOption className='btn-option' id='8' onClick={handlePlayerMove}>
         </S.ButtonPlayOption>
 
     </S.DivPlayOptions>
     <S.DivScoreBoard>
       <S.DivScorePlayer bgGreen>
         <S.Text sm semibold>you</S.Text>
-        <S.Text id='player1-score' lg bold>0</S.Text>
+        <S.Text id='player1-score' lg bold>{scoreBoardUpdatedPlayer1()}</S.Text>
       </S.DivScorePlayer>
       <S.DivScorePlayer bgGray>
         <S.Text sm semibold>ties</S.Text>
@@ -232,9 +268,10 @@ export default function GamePlay () {
       </S.DivScorePlayer>
       <S.DivScorePlayer bgGold>
         <S.Text sm semibold>(cpu)</S.Text>
-        <S.Text id='player2-score' lg bold>0</S.Text>
+        <S.Text id='player2-score' lg bold>{scoreBoardUpdatedPlayer2()}</S.Text>
       </S.DivScorePlayer>
     </S.DivScoreBoard>
+    
     {/* <S.ButtonPlayOption id='game-over' onClick={gameOver}>
       Game over
     </S.ButtonPlayOption> */}

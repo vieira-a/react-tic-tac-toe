@@ -34,7 +34,7 @@ export const DivTurnIndicator = styled.div`
 export const Text = styled.p`
   font-size: ${props => props.sm ? '1.2rem' : props.lg ? '1.8rem' : '1.4rem'};
   font-weight: ${props => props.semibold ? 600 : props.bold ? 700 : 500 };
-  color: ${props => props.primary ? color.gunmetal['light'] : color.gunmetal[1]};
+  color: ${props => props.primary ? color.gunmetal['light'] : props.green ? color['maximum-blue-green'] : color.gunmetal[1]};
   text-transform: uppercase;
   letter-spacing: 0.1em;
 `
@@ -78,4 +78,43 @@ export const DivScorePlayer = styled.div`
     props.bgGreen ? color["maximum-blue-green"] :
     props.bgGray ? color.gunmetal['light'] : 'none'
   };
+`
+
+export const DivGameOver = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 20rem;
+  left: 0;
+  top: 20.5rem;
+  background-color: ${color.gunmetal['4']};
+  visibility: ${props => props.hidden ? 'hidden' : 'visible'};
+`
+
+export const DivGameOverBoard = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+`
+
+export const DivGameOverButtons = styled.div`
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+`
+
+export const GameOverButtonQuit = styled.button`
+  background-color: ${color.gunmetal['light']};
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: ${shadow.gray}
+`
+
+export const GameOverButtonNextRound = styled.button`
+  background-color: ${color["satin-sheen-gold"]};
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: ${shadow.gold};
 `
