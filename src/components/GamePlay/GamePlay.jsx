@@ -47,7 +47,7 @@ export default function GamePlay () {
 
   const [player1Moves, setPlayer1Moves] = useState([]);
   const [player2Moves, setPlayer2Moves] = useState([]);
-
+  
   const handlePlayerMove = (event) => {
 
     if(playerTurn === player1) {
@@ -91,11 +91,10 @@ export default function GamePlay () {
     ['2', '4', '6'],
     ['2', '5', '8'],
     ['3', '4', '5'],
-    ['6', '7', '8'],
-    ['5', '6', '8']
+    ['6', '7', '8']
   ]
 
-  function verificaArrayPlayer (arrOrig, arrDest, player) {
+  function checkWinCondition (arrOrig, arrDest, player) {
     
     for(let i = 0; i < arrDest.length; i++) {
       
@@ -147,8 +146,8 @@ export default function GamePlay () {
 
   handlePlayer1Moves()
   handlePlayer2Moves()
-  verificaArrayPlayer(player1Amount, victoryConditions, 'Player 1')
-  verificaArrayPlayer(player2Amount, victoryConditions, 'Player 2')
+  checkWinCondition(player1Amount, victoryConditions, 'Player 1')
+  checkWinCondition(player2Amount, victoryConditions, 'Player 2')
 
   return (
     <>
