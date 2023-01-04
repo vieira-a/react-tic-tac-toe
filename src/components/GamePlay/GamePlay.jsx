@@ -264,7 +264,7 @@ export default function GamePlay () {
 
       <S.DivScorePlayer bgGold>
         <S.Text sm semibold>(X)</S.Text>
-        <S.Text id='player2-score' lg bold>{scoreBoardUpdatedPlayer2()}</S.Text>
+        <S.Text id='player2-score' lg bold>{scoreBoardUpdatedPlayer1()}</S.Text>
       </S.DivScorePlayer>
 
       <S.DivScorePlayer bgGray>
@@ -274,7 +274,7 @@ export default function GamePlay () {
 
       <S.DivScorePlayer bgGreen>
         <S.Text sm semibold>(O)</S.Text>
-        <S.Text id='player1-score' lg bold>{scoreBoardUpdatedPlayer1()}</S.Text>
+        <S.Text id='player1-score' lg bold>{scoreBoardUpdatedPlayer2()}</S.Text>
       </S.DivScorePlayer>
       
     </S.DivScoreBoard>
