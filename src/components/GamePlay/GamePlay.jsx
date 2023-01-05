@@ -15,32 +15,10 @@ export default function GamePlay () {
   const 
   {
    /**Refactoring */
-   playerOption,
-    setPlayerOption,
-    cpuOption,
-    setCpuOption,
-    humanOption,
-    setHumanOption,
-    player1,
-    setPlayer1,
-    player2,
-    setPlayer2,
     playerTurn,
     setPlayerTurn,
-    setupGameOptions,
     startGame,
    /**End of refactoring */
-    gameOption, 
-    setGameOption, 
-    gamePlayer, 
-    setGamePlayer,
-    gameStage,
-    setGameStage, 
-    handleGameOption,
-    handleGameStage,
-    handleGameTurn,
-    playerMoves,
-    setPlayerMoves,
     avaliableMoves,
     setAvaliableMoves,
   } = useContext(GameContext);
@@ -99,6 +77,8 @@ export default function GamePlay () {
     player2: 0,
     tie: 0
   }
+
+  console.log('Score players: ', scorePlayers)
 
   const scoreBoardTie = document.getElementById('tie-score');
   const divGameOver = document.getElementById('game-over-div');
@@ -186,14 +166,12 @@ export default function GamePlay () {
 
   function nextRound () {
     divGameOver.style.visibility = 'hidden';
-    setPlayer1Moves([]);
-    setPlayer2Moves([]);
-    player1Amount = [];
-    player2Amount = [];
+    
     buttonOption.forEach((btn) => {
       btn.innerHTML = ''
-      btn.disabled = false;
+      //btn.disabled = false;
     })
+    startGame()
   }
 
   function quitGame() {

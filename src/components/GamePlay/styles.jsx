@@ -82,7 +82,7 @@ export const DivScorePlayer = styled.div`
 
 export const DivGameOver = styled.div`
   position: absolute;
-  display: flex;
+  display: none;
   justify-content: center;
   width: 100vw;
   height: 20rem;
