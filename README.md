@@ -107,8 +107,8 @@ Inicio: 02/01/2023 | Fim: 09/01/2023
 
 *GameOver*
 
-- [ ] Criar componente conforme layout para apresentar o resultado do jogo
-- [ ] Criar condições para um novo jogo
+- [x] Criar componente conforme layout para apresentar o resultado do jogo
+- [x] Criar condições para um novo jogo
   - [ ] Permitir continuar jogando (um novo jogo será iniciado incrementando a contagem do placar)
   - [ ] Reiniciar o jogo, zerando o placar.
 

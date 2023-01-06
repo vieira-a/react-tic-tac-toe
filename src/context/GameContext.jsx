@@ -27,16 +27,19 @@ export const GameContextProvider = ({children}) => {
   console.log(`
   PLAYER1: ${player1} - Move: ${movePlayer1} | PLAYER2: ${player2} - Move: ${movePlayer2}
   `)
-
   /**
    * TRANSITION: stages of the game. Default: GameSetup(0). GamePlay(1)
    * That states are changed on GameSetup > GamePlay (on game start) or GamePlay > GameSetup (on game over)
    */
   const [gameStage, setGameStage] = useState(0);
 
-  //Handle transition
-  function gameStart() {
-    setGameStage(1)
+  //Handle transition stage: 0=setup, 1=start
+  function changeGameStage() {
+    if(gameStage === 0){
+      setGameStage(1)
+    } else if(gameStage === 1){
+      setGameStage(0)
+    }
   }
 
   const [playerOption, setPlayerOption] = useState(0);
@@ -110,13 +113,6 @@ export const GameContextProvider = ({children}) => {
     }
   }
 
-  const handleGameStage = () => {
-    if(gameStage === 0) {
-      setGameStage(1);
-    } else if(gameStage === 1){
-      setGameStage(2)
-    }
-  }
 
   const handleGameTurn = () => {
     if(gameOption === 0) {
@@ -141,7 +137,7 @@ return (
       movePlayer2,
       setMovePlayer1,
       setMovePlayer2,
-      gameStart,
+      changeGameStage,
       /**End of refactoring */
       playerOption,
       cpuOption,
@@ -157,7 +153,6 @@ return (
       gameStage,
       setGameStage,
       handleGameOption,
-      handleGameStage,
       handleGameTurn,
       playerMoves,
       setPlayerMoves,

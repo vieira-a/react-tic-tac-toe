@@ -19,6 +19,7 @@ export default function GameSetup() {
     setPlayer1,
     setPlayer2,
     gameStart,
+    changeGameStage,
     /**End of new refactoring */
     playerOption,
     setPlayerOption,
@@ -89,7 +90,7 @@ export default function GameSetup() {
         <S.ButtonSetPlayer disabled id='1' bgGold shadowGold>
           <S.Text>novo jogo (vs cpu)</S.Text>
         </S.ButtonSetPlayer>
-        <S.ButtonSetPlayer id='2' bgGreen shadowGreen onClick={gameStart}>
+        <S.ButtonSetPlayer id='2' bgGreen shadowGreen onClick={changeGameStage}>
           <S.Text>novo jogo (vs humano)</S.Text>
         </S.ButtonSetPlayer>
       </S.SetPlayerSection>

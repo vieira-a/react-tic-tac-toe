@@ -12,6 +12,13 @@ export const GlobalStyle = createGlobalStyle`
 
   :root {
     font-size: 62.5%;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
 
   button {
