@@ -18,12 +18,7 @@ export default function GameSetup() {
     player2,
     setPlayer1,
     setPlayer2,
-    movePlayer1,
-    setMovePlayer1,
-    movePlayer2,
-    setMovePlayer2,
-    gameStage,
-    setGameStage, 
+    gameStart,
     /**End of new refactoring */
     playerOption,
     setPlayerOption,
@@ -45,6 +40,13 @@ export default function GameSetup() {
     handleGameStage,
   } = useContext(GameContext);
 
+  /**
+   * SETUP: Functions to handle who and what each player will play
+   * Default: player1 = player - player2 = human | player1 move = X - player 2 move = O
+   * That functions will change the states after each move
+   */
+
+  //Handle which player will play first
   function handleGamePlayers () {
     if(player1 === 'player' && player2 === 'human'){
       setPlayer1('human')
@@ -54,61 +56,43 @@ export default function GameSetup() {
       setPlayer2('human')
     }
   }
-  function handleMovePlayers () {
-    if(movePlayer1 === move1 && movePlayer2 === move2){
-      setMovePlayer1(move2)
-      setMovePlayer2(move1)
-    } else if(movePlayer1 === move2 && movePlayer2 === move1){
-      setMovePlayer1(move1)
-      setMovePlayer2(move2)
-    }
-  }
-
-  
 
   return (
     <>
-    <S.Header>
-
-      <ButtonX />
-      <ButtonO />
-
-    </S.Header>
-
-    <S.SetupSection>
-        
-        <S.Text semibold primary>escolha um jogador</S.Text>
-
+      <S.Header>
+        <ButtonX />
+        <ButtonO />
+      </S.Header>
+      <S.SetupSection>    
+        <S.Text semibold primary>quer jogar x ou o ?</S.Text>
         <S.SetupOption>
           <S.SetupButton>
-            <S.ButtonOption disabled={playerOption === 0 ? true : false} onClick={setupGameOptions}>
+            {/* <S.ButtonOption disabled={playerOption === 0 ? true : false} onClick={setupGameOptions}>
+              <ButtonX />
+            </S.ButtonOption> */}
+            <S.ButtonOption disabled={player1 === 'player' ? true : false} onClick={handleGamePlayers}>
               <ButtonX />
             </S.ButtonOption>
           </S.SetupButton>
           <S.SetupButton>
-
-            <S.ButtonOption disabled={playerOption === 1 ? true: false} onClick={setupGameOptions}>
+          <S.ButtonOption disabled={player2 === 'player' ? true: false} onClick={handleGamePlayers}>
               <ButtonO />
             </S.ButtonOption>
+            {/* <S.ButtonOption disabled={playerOption === 1 ? true: false} onClick={setupGameOptions}>
+              <ButtonO />
+            </S.ButtonOption> */}
           </S.SetupButton>
         </S.SetupOption>
-
         <S.Text semibold primary>lembre-se: x começa</S.Text>
-
-    </S.SetupSection>
-
-    <S.SetPlayerSection>
-
-      <S.ButtonSetPlayer id='1' bgGold shadowGold onClick={startGame}>
-        <S.Text>novo jogo (vs cpu)</S.Text>
-        
-      </S.ButtonSetPlayer>
-
-      <S.ButtonSetPlayer id='2' bgGreen shadowGreen onClick={startGame}>
-        <S.Text>novo jogo (vs humano)</S.Text>
-      </S.ButtonSetPlayer>
-
-    </S.SetPlayerSection>
+      </S.SetupSection>
+      <S.SetPlayerSection>
+        <S.ButtonSetPlayer disabled id='1' bgGold shadowGold>
+          <S.Text>novo jogo (vs cpu)</S.Text>
+        </S.ButtonSetPlayer>
+        <S.ButtonSetPlayer id='2' bgGreen shadowGreen onClick={gameStart}>
+          <S.Text>novo jogo (vs humano)</S.Text>
+        </S.ButtonSetPlayer>
+      </S.SetPlayerSection>
     </>
   )
 }

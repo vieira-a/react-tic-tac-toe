@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useCallback } from "react";
 import ButtonO from "../components/Button/ButtonO";
 import ButtonX from "../components/Button/ButtonX";
 
@@ -22,21 +22,22 @@ export const GameContextProvider = ({children}) => {
   const [movePlayer1, setMovePlayer1] = useState(move1);
   const [movePlayer2, setMovePlayer2] = useState(move2);
   /**
-   * SETUP: Functions to handle who and what each player will play
-   * That functions will change the states after each move
-   */
-
-  /**
    * LOG INITIAL SETUP
    */
   console.log(`
   PLAYER1: ${player1} - Move: ${movePlayer1} | PLAYER2: ${player2} - Move: ${movePlayer2}
   `)
+
   /**
    * TRANSITION: stages of the game. Default: GameSetup(0). GamePlay(1)
    * That states are changed on GameSetup > GamePlay (on game start) or GamePlay > GameSetup (on game over)
    */
   const [gameStage, setGameStage] = useState(0);
+
+  //Handle transition
+  function gameStart() {
+    setGameStage(1)
+  }
 
   const [playerOption, setPlayerOption] = useState(0);
   const [cpuOption, setCpuOption] = useState(1);
@@ -138,6 +139,10 @@ return (
       move2,
       movePlayer1,
       movePlayer2,
+      setMovePlayer1,
+      setMovePlayer2,
+      gameStart,
+      /**End of refactoring */
       playerOption,
       cpuOption,
       humanOption,
@@ -145,7 +150,6 @@ return (
       setPlayerTurn,
       setupGameOptions,
       startGame,
-      /**End of refactoring */
       gameOption, 
       setGameOption, 
       gamePlayer, 
