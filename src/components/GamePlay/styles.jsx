@@ -53,7 +53,7 @@ export const ButtonPlayOption = styled.button`
   font-family: 'Fredoka', sans-serif;
   font-size: 4.8rem;
   font-weight: 700;
-  color: ${props => props.buttonx ? color["satin-sheen-gold"] : props.buttono ? color["maximum-blue-green"] : 'none'};
+  color: ${props => props.buttonGold ? color["satin-sheen-gold"] : props.buttonGreen ? color["maximum-blue-green"] : 'none'};
 `
 
 export const DivScoreBoard = styled.div`

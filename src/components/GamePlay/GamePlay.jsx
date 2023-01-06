@@ -15,6 +15,12 @@ export default function GamePlay () {
   const 
   {
    /**Refactoring */
+    player1,
+    player2,
+    movePlayer1,
+    movePlayer2,
+    move1,
+    move2,
     playerTurn,
     setPlayerTurn,
     startGame,
@@ -26,6 +32,90 @@ export default function GamePlay () {
   const [player1Moves, setPlayer1Moves] = useState([]);
   const [player2Moves, setPlayer2Moves] = useState([]);
   
+  /**
+   * PLAY: haldling players moves
+   * Objectives: 
+   * #1 Write the move in HTML accoding with button click
+   * #2 Update player turn
+   * #3 Fill array of both players
+   * #4 Delete move from avaliableMoves array
+   */
+
+  const [whoPlays, setWhoPlays] = useState(player1);
+  //1# - Write the move in HTML accoding with button click
+  function playerMove(event){
+    
+    let buttonMove = event.target
+  
+    if(whoPlays === player1){
+      buttonMove.innerHTML = movePlayer1
+      buttonMove.style.color = color['satin-sheen-gold']
+    } else if(whoPlays === player2){
+      buttonMove.innerHTML = movePlayer2
+      buttonMove.style.color = color['maximum-blue-green']
+    }
+
+  }
+
+  //#2 Update player turn
+  function updatePlayerTurn(){
+    
+    if(whoPlays === player1){
+      setWhoPlays(player2)
+    } else if(whoPlays === player2){
+      setWhoPlays(player1)
+    }
+  }
+
+  //#3 Fill array of both players
+  function updateMovePlayers(event){
+
+    let buttonMove = event.target
+
+    if(whoPlays === player1){
+      setPlayer1Moves((prev) => {
+        return {
+          ...prev, [buttonMove.id] : buttonMove.id
+        }
+      })
+
+    } else if(whoPlays === player2){
+      setPlayer2Moves((prev) => {
+        return {
+          ...prev, [buttonMove.id] : buttonMove.id
+        }
+      })
+    
+    }
+  }
+
+  function disableButton(event){
+    event.target.disabled = true
+  }
+
+  function enableButton(event){
+    event.target.disabled = false
+  }
+
+  function updateAvaliableMoves(event){
+    setAvaliableMoves(avaliableMoves.filter(item => item != event.target.id))
+  }
+
+  //NEW MAIN FUNCTION
+  function gamePlayerMove(event){
+    updateMovePlayers(event)
+    updateAvaliableMoves(event)
+    playerMove(event)
+    updatePlayerTurn(event)
+    disableButton(event)
+
+  }
+
+  // console.log('PLAYER1 MOVES', player1Moves)
+  // console.log('PLAYER2 MOVES', player2Moves)
+  //console.log('AVALIABLE MOVES', avaliableMoves)
+
+  //OLD FUNCTION
   const handlePlayerMove = (event) => {
 
     if(playerTurn === 'player1') {
@@ -38,7 +128,6 @@ export default function GamePlay () {
       })
 
       event.target.disabled = true;
-      setPlayerTurn('player2')
       
     } else if(playerTurn === 'player2') { 
       event.target.innerHTML = 'O'
@@ -49,7 +138,7 @@ export default function GamePlay () {
         }
       })
       event.target.disabled = true;
-      setPlayerTurn('player1')
+      //setPlayerTurn('player1')
     }
     setAvaliableMoves(avaliableMoves.filter(item => item != event.target.id))
   }
@@ -78,7 +167,7 @@ export default function GamePlay () {
     tie: 0
   }
 
-  console.log('Score players: ', scorePlayers)
+  //console.log('Score players: ', scorePlayers)
 
   const scoreBoardTie = document.getElementById('tie-score');
   const divGameOver = document.getElementById('game-over-div');
@@ -218,7 +307,7 @@ export default function GamePlay () {
     </S.Header>
     <S.DivPlayOptions>
      
-      <S.ButtonPlayOption className='btn-option' id='0' onClick={handlePlayerMove}>
+      {/* <S.ButtonPlayOption className='btn-option' id='0' onClick={handlePlayerMove}>
       </S.ButtonPlayOption>
       <S.ButtonPlayOption className='btn-option' id='1' onClick={handlePlayerMove}>
         </S.ButtonPlayOption>
@@ -235,6 +324,25 @@ export default function GamePlay () {
       <S.ButtonPlayOption className='btn-option' id='7' onClick={handlePlayerMove}>
         </S.ButtonPlayOption>
       <S.ButtonPlayOption className='btn-option' id='8' onClick={handlePlayerMove}>
+        </S.ButtonPlayOption> */}
+
+        <S.ButtonPlayOption className='btn-option' id='0' onClick={gamePlayerMove}>
+      </S.ButtonPlayOption>
+      <S.ButtonPlayOption className='btn-option' id='1' onClick={gamePlayerMove}>
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption className='btn-option' id='2' onClick={gamePlayerMove}>
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption className='btn-option' id='3' onClick={gamePlayerMove}>
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption className='btn-option' id='4' onClick={gamePlayerMove}>
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption className='btn-option' id='5' onClick={gamePlayerMove}>
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption className='btn-option' id='6' onClick={gamePlayerMove}>
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption className='btn-option' id='7' onClick={gamePlayerMove}>
+        </S.ButtonPlayOption>
+      <S.ButtonPlayOption className='btn-option' id='8' onClick={gamePlayerMove}>
         </S.ButtonPlayOption>
 
     </S.DivPlayOptions>
