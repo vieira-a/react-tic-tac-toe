@@ -73,19 +73,10 @@ export default function GamePlay () {
     let buttonMove = event.target
 
     if(whoPlays === player1){
-      setPlayer1Moves((prev) => {
-        return {
-          ...prev, [buttonMove.id] : buttonMove.id
-        }
-      })
+      setPlayer1Moves((prev) => [...prev, buttonMove.id])
 
     } else if(whoPlays === player2){
-      setPlayer2Moves((prev) => {
-        return {
-          ...prev, [buttonMove.id] : buttonMove.id
-        }
-      })
-    
+      setPlayer2Moves((prev) => [...prev, buttonMove.id])
     }
   }
 
@@ -111,8 +102,8 @@ export default function GamePlay () {
 
   }
 
-  // console.log('PLAYER1 MOVES', player1Moves)
-  // console.log('PLAYER2 MOVES', player2Moves)
+  console.log('PLAYER1 MOVES', player1Moves)
+  console.log('PLAYER2 MOVES', player2Moves)
   //console.log('AVALIABLE MOVES', avaliableMoves)
 
   //OLD FUNCTION
