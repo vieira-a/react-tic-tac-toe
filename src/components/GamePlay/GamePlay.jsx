@@ -19,6 +19,7 @@ export default function GamePlay () {
     player2,
     movePlayer1,
     movePlayer2,
+    changeGameStage,
     move1,
     move2,
     playerTurn,
@@ -29,15 +30,14 @@ export default function GamePlay () {
     setAvaliableMoves,
   } = useContext(GameContext);
 
-
-  const scorePlayers = {
-    player1: 0,
-    player2: 0,
-    tie: 0
-  }
-  
   const [player1Moves, setPlayer1Moves] = useState([]);
   const [player2Moves, setPlayer2Moves] = useState([]);
+
+  function resetStates () {
+    //setPlayer1Moves([])
+    //setPlayer2Moves([])
+    
+  }
   
   /**
    * PLAY: haldling players moves
@@ -106,7 +106,6 @@ export default function GamePlay () {
     playerMove(event)
     updatePlayerTurn(event)
     disableButton(event)
-
   }
 
   // console.log('PLAYER1 MOVES', player1Moves)
@@ -163,7 +162,6 @@ export default function GamePlay () {
 
   const divGameOver = document.getElementById('game-over-div');
   const buttonOption = document.querySelectorAll('.btn-option');
-
   /* OLD FUNCTIONS
   let player1Amount = []
   let player2Amount = []
@@ -198,6 +196,8 @@ export default function GamePlay () {
   let scoreHuman = []
   let scoreTie = []
   let finalScoreTie = []
+  let finalScorePlayer = 0
+  let finalScoreHuman = 0
   
   function gameResult (player, playerMovesArray, victoryConditionArray, remainingMoves){
     
@@ -221,7 +221,6 @@ export default function GamePlay () {
           
           if(playerWins === true){
             scorePlayer.push([...scorePlayer, 'player'])
-            // console.log(scorePlayer)
           }
 
         } else if(playerPoints === 3 && player === 'human'){
@@ -242,17 +241,17 @@ export default function GamePlay () {
         }
       }
 
-      // if(playerWins === false && humanWins === false && avaliableMoves.length === 0){
-      //   tie = true
-      //   console.log(tie)
-      //   // if(tie === true) {
-      //   //   scoreTie.push([...scoreTie, 'empate'])
-      //   // }
-      //   // console.log(scoreTie)
-      // }
+      useEffect(()=> {
+      
+        if(playerPoints === 3 || finalScoreTie.length === 72) {
+          divGameOver.style.visibility = 'visible';
+          divGameOver.style.display = 'block';
+          //setGameStage(2)
+        }
+    
+      }, [playerPoints, finalScoreTie])
     }
-
-
+    
 
     useCallback(()=> {
 
@@ -269,7 +268,28 @@ export default function GamePlay () {
     }
     return finalScoreTie.length
   }
-  
+
+  function returnScorePlayer () {
+    if(scorePlayer.length === 1){
+      finalScorePlayer ++
+    }
+    return finalScorePlayer
+  }
+
+  console.log(finalScorePlayer)
+
+  function returnScoreHuman (){
+    if(scoreHuman.length === 1){
+      finalScoreHuman += 1
+    }
+    return finalScoreHuman
+  }
+
+  // console.log(`
+  //   PLAYER: ${scorePlayer.length} --- HUMAN: ${scoreHuman.length} --- TIE: ${finalScoreTie.length}
+  // `)
+
+  /* OLD FUNCTION
   function checkWinCondition (arrOrig, arrDest, player) {
     
     for(let i = 0; i < arrDest.length; i++) {
@@ -305,6 +325,7 @@ export default function GamePlay () {
 
     console.log(scorePlayers)
   }
+  */
   
   // function updateScorePlayers() {
   //   let scoreTie = 0
@@ -316,22 +337,29 @@ export default function GamePlay () {
   
   // }
 
-  function scoreBoardUpdatedPlayer1 () {
-    return scorePlayers.player1
-  }
+  // function scoreBoardUpdatedPlayer1 () {
+  //   return scorePlayers.player1
+  // }
 
-  function scoreBoardUpdatedPlayer2 () {
-    return scorePlayers.player2
-  }
+  // function scoreBoardUpdatedPlayer2 () {
+  //   return scorePlayers.player2
+  // }
 
   function nextRound () {
-    divGameOver.style.visibility = 'hidden';
+    
+    divGameOver.style.visibility = 'hidden'
+    
+    setWhoPlays(player1)
+    setPlayer1Moves([])
+    setPlayer2Moves([])
+
     
     buttonOption.forEach((btn) => {
       btn.innerHTML = ''
-      //btn.disabled = false;
+      btn.disabled = false;
     })
-    startGame()
+
+    
   }
 
   function quitGame() {
@@ -426,18 +454,18 @@ export default function GamePlay () {
       <S.DivScorePlayer bgGold>
         <S.Text sm semibold>(X)</S.Text>
         {/* <S.Text id='player1-score' lg bold>{scoreBoardUpdatedPlayer1()}</S.Text> */}
-        <S.Text id='player1-score' lg bold>{scorePlayer.length}</S.Text>
+        <S.Text id='player1-score' lg bold>{returnScorePlayer()}</S.Text>
       </S.DivScorePlayer>
 
       <S.DivScorePlayer bgGray>
         <S.Text sm semibold>empate</S.Text>
-        <S.Text id='tie-score' lg bold>{returnScoreTie() }</S.Text>
+        <S.Text id='tie-score' lg bold>{returnScoreTie()}</S.Text>
       </S.DivScorePlayer>
 
       <S.DivScorePlayer bgGreen>
         <S.Text sm semibold>(O)</S.Text>
         {/* <S.Text id='player2-score' lg bold>{scoreBoardUpdatedPlayer2()}</S.Text> */}
-        <S.Text id='player2-score' lg bold>{scoreHuman.length}</S.Text>
+        <S.Text id='player2-score' lg bold>{returnScoreHuman()}</S.Text>
       </S.DivScorePlayer>
       
     </S.DivScoreBoard>
