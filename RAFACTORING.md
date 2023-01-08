@@ -28,3 +28,19 @@ With those variables and this function, you can setup who plays and what each pl
 
 - `setPlayer1Moves` and `setPlayer1Moves` arrays updated after each move
 - `setPlayerTurn`: 'player1' or 'player2'
+
+This function was replaced by `updateMovePlayers` function, responsible now just by fill move array of players.
+I make separate functions to disable and enable buttons on click, and update the array of avaliable moves.
+
+Now, a main function named `gamePlayerMove` is responsible by call this others functions, and:
+
+- Update player moves array;
+- Update avaliable moves array;
+- Write the move player in HTML;
+- Update who plays after each move;
+- Disable button.
+
+2- There was more 2 functions: `handlePlayer1Moves` and `handlePlayer2Moves` to get the each item of `player1Moves` and `player2Moves` (that was an object with key and value) and fill others arrays `player1Amount` and `player2Amount`, with just the values.
+
+With the function `updateMovePlayers` I just fill the players arrays with the values.
+

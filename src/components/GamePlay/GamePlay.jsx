@@ -29,6 +29,13 @@ export default function GamePlay () {
     setAvaliableMoves,
   } = useContext(GameContext);
 
+
+  const scorePlayers = {
+    player1: 0,
+    player2: 0,
+    tie: 0
+  }
+  
   const [player1Moves, setPlayer1Moves] = useState([]);
   const [player2Moves, setPlayer2Moves] = useState([]);
   
@@ -102,11 +109,12 @@ export default function GamePlay () {
 
   }
 
-  console.log('PLAYER1 MOVES', player1Moves)
-  console.log('PLAYER2 MOVES', player2Moves)
-  //console.log('AVALIABLE MOVES', avaliableMoves)
+  // console.log('PLAYER1 MOVES', player1Moves)
+  // console.log('PLAYER2 MOVES', player2Moves)
+  // console.log('AVALIABLE MOVES', avaliableMoves)
 
-  //OLD FUNCTION
+  
+  /* OLD FUNCTION
   const handlePlayerMove = (event) => {
 
     if(playerTurn === 'player1') {
@@ -133,6 +141,7 @@ export default function GamePlay () {
     }
     setAvaliableMoves(avaliableMoves.filter(item => item != event.target.id))
   }
+  */
 
   /**
    * Preparing victory condition. It will be one function by player
@@ -152,18 +161,10 @@ export default function GamePlay () {
     ['6', '7', '8']
   ]
 
-  const scorePlayers = {
-    player1: 0,
-    player2: 0,
-    tie: 0
-  }
-
-  //console.log('Score players: ', scorePlayers)
-
-  const scoreBoardTie = document.getElementById('tie-score');
   const divGameOver = document.getElementById('game-over-div');
   const buttonOption = document.querySelectorAll('.btn-option');
-  
+
+  /* OLD FUNCTIONS
   let player1Amount = []
   let player2Amount = []
 
@@ -189,8 +190,87 @@ export default function GamePlay () {
       
     }, [player2Moves])
   }
+  */
 
-  function checkWinCondition (arrOrig, arrDest, player, status) {
+  //New function to obtain victory result
+  
+  let scorePlayer = []
+  let scoreHuman = []
+  let scoreTie = []
+  let finalScoreTie = []
+  
+  function gameResult (player, playerMovesArray, victoryConditionArray, remainingMoves){
+    
+    let playerWins = false
+    let humanWins = false
+    let tie = false
+    
+    for(let i = 0; i < victoryConditionArray.length; i++){
+      
+      let playerPoints = 0
+      
+      for(let item of playerMovesArray){
+        
+        if(victoryConditionArray[i].includes(item)){
+          playerPoints += 1
+        }
+
+        if(playerPoints === 3 && player === 'player'){
+          
+          playerWins = true
+          
+          if(playerWins === true){
+            scorePlayer.push([...scorePlayer, 'player'])
+            // console.log(scorePlayer)
+          }
+
+        } else if(playerPoints === 3 && player === 'human'){
+          
+          humanWins = true
+          
+          if(humanWins === true) {
+            scoreHuman.push([...scoreHuman, 'human'])
+            // console.log(scoreHuman)
+          }
+        } else if(playerWins === false && humanWins === false && avaliableMoves.length === 0) {
+
+          tie = true  
+
+          if(tie === true) {
+            scoreTie.push('tie')
+          }
+        }
+      }
+
+      // if(playerWins === false && humanWins === false && avaliableMoves.length === 0){
+      //   tie = true
+      //   console.log(tie)
+      //   // if(tie === true) {
+      //   //   scoreTie.push([...scoreTie, 'empate'])
+      //   // }
+      //   // console.log(scoreTie)
+      // }
+    }
+
+
+
+    useCallback(()=> {
+
+    }, [playerMovesArray])
+  }
+
+  gameResult(player1, player1Moves, victoryConditions, avaliableMoves)
+  gameResult(player2, player2Moves, victoryConditions, avaliableMoves)
+
+  function returnScoreTie () {
+    
+    if(scoreTie.length === 72) {
+      finalScoreTie.push([...finalScoreTie, 'tie'])
+    }
+    return finalScoreTie.length
+  }
+  
+  function checkWinCondition (arrOrig, arrDest, player) {
     
     for(let i = 0; i < arrDest.length; i++) {
       let counter = 0
@@ -200,11 +280,11 @@ export default function GamePlay () {
       } 
       if(counter === 3){
         scorePlayers[player] += 1
-        updateScorePlayers()
+        //updateScorePlayers()
         
       } else {
         scorePlayers.tie += 1
-        updateScorePlayers()   
+        //updateScorePlayers()   
       } 
     }
 
@@ -223,18 +303,18 @@ export default function GamePlay () {
       
     }, [handlePlayerMove])
 
-    //console.log(scorePlayers)
+    console.log(scorePlayers)
   }
   
-  function updateScorePlayers() {
-    let scoreTie = 0
+  // function updateScorePlayers() {
+  //   let scoreTie = 0
     
-    if(scorePlayers.tie === 72){
-      scoreTie ++
-    }
-    scoreBoardTie.innerHTML = scoreTie
+  //   if(scorePlayers.tie === 72){
+  //     scoreTie ++
+  //   }
+  //   scoreBoardTie.innerHTML = scoreTie
   
-  }
+  // }
 
   function scoreBoardUpdatedPlayer1 () {
     return scorePlayers.player1
@@ -261,10 +341,14 @@ export default function GamePlay () {
   // console.log('Player 1 move: ', player1Moves)
   // console.log('Player1 amount: ', player1Amount)
 
+  /* OLD FUNCTIONS CALL
   handlePlayer1Moves()
   handlePlayer2Moves()
+  checkWinCondition(player1Moves, victoryConditions, 'player1')
+  checkWinCondition(player2Moves, victoryConditions, 'player2')
   checkWinCondition(player1Amount, victoryConditions, 'player1')
   checkWinCondition(player2Amount, victoryConditions, 'player2')
+  */
 
   return (
     <>
@@ -341,17 +425,19 @@ export default function GamePlay () {
 
       <S.DivScorePlayer bgGold>
         <S.Text sm semibold>(X)</S.Text>
-        <S.Text id='player2-score' lg bold>{scoreBoardUpdatedPlayer1()}</S.Text>
+        {/* <S.Text id='player1-score' lg bold>{scoreBoardUpdatedPlayer1()}</S.Text> */}
+        <S.Text id='player1-score' lg bold>{scorePlayer.length}</S.Text>
       </S.DivScorePlayer>
 
       <S.DivScorePlayer bgGray>
         <S.Text sm semibold>empate</S.Text>
-        <S.Text id='tie-score' lg bold>0</S.Text>
+        <S.Text id='tie-score' lg bold>{returnScoreTie() }</S.Text>
       </S.DivScorePlayer>
 
       <S.DivScorePlayer bgGreen>
         <S.Text sm semibold>(O)</S.Text>
-        <S.Text id='player1-score' lg bold>{scoreBoardUpdatedPlayer2()}</S.Text>
+        {/* <S.Text id='player2-score' lg bold>{scoreBoardUpdatedPlayer2()}</S.Text> */}
+        <S.Text id='player2-score' lg bold>{scoreHuman.length}</S.Text>
       </S.DivScorePlayer>
       
     </S.DivScoreBoard>
