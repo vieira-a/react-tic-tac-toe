@@ -38,9 +38,23 @@ Now, a main function named `gamePlayerMove` is responsible by call this others f
 - Update avaliable moves array;
 - Write the move player in HTML;
 - Update who plays after each move;
-- Disable button.
+- Disable button after each move.
 
 2- There was more 2 functions: `handlePlayer1Moves` and `handlePlayer2Moves` to get the each item of `player1Moves` and `player2Moves` (that was an object with key and value) and fill others arrays `player1Amount` and `player2Amount`, with just the values.
 
 With the function `updateMovePlayers` I just fill the players arrays with the values.
 
+3- How to update the scoreboard
+
+There was several functions that could not correctly manage the scoreboard. I couldn't store and increment states properly because of the nature of React.
+I had to learn to use the (useEffect)[https://reactjs.org/docs/hooks-effect.html] hook.
+
+So I built some functions to manage the states needed to update the scoreboard:
+
+- `updateScoreBoardPlayer`
+- `updateScoreBoardHuman`
+- `updateScoreBoardTie`
+
+Those functions, keep the states updated.
+
+Finally, I build the function to manage the game over state, that shows the game over div.

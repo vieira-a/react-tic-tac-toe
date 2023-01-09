@@ -7,38 +7,22 @@ import ButtonO from "../Button/ButtonO";
 import ButtonReload from '../Button/ButtonReload';
 
 //Context
-import React, { useContext, useState, useCallback, useEffect } from "react";
-import { GameContext } from "../../context/GameContext";
+import React, { useState, useCallback, useEffect } from "react";
 
-export default function GamePlay () {
-  
-  const 
+export default function GamePlay (
   {
-   /**Refactoring */
-    player1,
-    player2,
-    movePlayer1,
-    movePlayer2,
-    changeGameStage,
-    move1,
-    move2,
-    playerTurn,
-    setPlayerTurn,
-    startGame,
-   /**End of refactoring */
+    player1, 
+    player2, 
     avaliableMoves,
     setAvaliableMoves,
-  } = useContext(GameContext);
-
+    movePlayer1,
+    movePlayer2,
+  }) 
+  {
+  
   const [player1Moves, setPlayer1Moves] = useState([]);
   const [player2Moves, setPlayer2Moves] = useState([]);
-
-  function resetStates () {
-    //setPlayer1Moves([])
-    //setPlayer2Moves([])
-    
-  }
-  
+ 
   /**
    * PLAY: haldling players moves
    * Objectives: 
@@ -61,7 +45,6 @@ export default function GamePlay () {
       buttonMove.innerHTML = movePlayer2
       buttonMove.style.color = color['maximum-blue-green']
     }
-
   }
 
   //#2 Update player turn
@@ -91,15 +74,11 @@ export default function GamePlay () {
     event.target.disabled = true
   }
 
-  function enableButton(event){
-    event.target.disabled = false
-  }
-
   function updateAvaliableMoves(event){
     setAvaliableMoves(avaliableMoves.filter(item => item != event.target.id))
   }
-
-  //NEW MAIN FUNCTION
+  
+  //MAIN FUNCTION
   function gamePlayerMove(event){
     updateMovePlayers(event)
     updateAvaliableMoves(event)
@@ -107,40 +86,6 @@ export default function GamePlay () {
     updatePlayerTurn(event)
     disableButton(event)
   }
-
-  // console.log('PLAYER1 MOVES', player1Moves)
-  // console.log('PLAYER2 MOVES', player2Moves)
-  // console.log('AVALIABLE MOVES', avaliableMoves)
-
-  
-  /* OLD FUNCTION
-  const handlePlayerMove = (event) => {
-
-    if(playerTurn === 'player1') {
-      event.target.innerHTML = 'X'
-      event.target.style.color = color['satin-sheen-gold']
-      setPlayer1Moves((prev) => {
-        return {
-          ...prev, [event.target.id] : event.target.id
-        }
-      })
-
-      event.target.disabled = true;
-      
-    } else if(playerTurn === 'player2') { 
-      event.target.innerHTML = 'O'
-      event.target.style.color = color['maximum-blue-green']
-      setPlayer2Moves((prev) => {
-        return {
-          ...prev, [event.target.id] : event.target.id
-        }
-      })
-      event.target.disabled = true;
-      //setPlayerTurn('player1')
-    }
-    setAvaliableMoves(avaliableMoves.filter(item => item != event.target.id))
-  }
-  */
 
   /**
    * Preparing victory condition. It will be one function by player
@@ -160,223 +105,138 @@ export default function GamePlay () {
     ['6', '7', '8']
   ]
 
-  const divGameOver = document.getElementById('game-over-div');
-  const buttonOption = document.querySelectorAll('.btn-option');
-  /* OLD FUNCTIONS
-  let player1Amount = []
-  let player2Amount = []
-
-  const handlePlayer1Moves = () => {
-    
-    for(let key in player1Moves) {
-      player1Amount.push(key)
-    }
-
-    useCallback(()=>{
-      
-    }, [player1Moves])
-  }
-
-  const handlePlayer2Moves = () => {
-    
-    for(let key in player2Moves) {
-      player2Amount.push(key)
-      
-    }
-
-    useCallback(()=>{
-      
-    }, [player2Moves])
-  }
-  */
-
-  //New function to obtain victory result
-  
+  /**
+   * ACCESSORY STATES
+   */
   let scorePlayer = []
   let scoreHuman = []
   let scoreTie = []
-  let finalScoreTie = []
-  let finalScorePlayer = 0
-  let finalScoreHuman = 0
-  
-  function gameResult (player, playerMovesArray, victoryConditionArray, remainingMoves){
-    
+
+  /**
+   * GAME MANAGEMENT
+   */
+  const gameResult = useCallback((player, playerMovesArray, victoryConditionArray, remainingMoves) => {
+
     let playerWins = false
     let humanWins = false
     let tie = false
     
     for(let i = 0; i < victoryConditionArray.length; i++){
-      
       let playerPoints = 0
-      
       for(let item of playerMovesArray){
-        
         if(victoryConditionArray[i].includes(item)){
           playerPoints += 1
         }
-
         if(playerPoints === 3 && player === 'player'){
-          
           playerWins = true
-          
           if(playerWins === true){
             scorePlayer.push([...scorePlayer, 'player'])
           }
-
         } else if(playerPoints === 3 && player === 'human'){
-          
           humanWins = true
-          
           if(humanWins === true) {
             scoreHuman.push([...scoreHuman, 'human'])
-            // console.log(scoreHuman)
           }
-        } else if(playerWins === false && humanWins === false && avaliableMoves.length === 0) {
-
+        } else if(playerWins === false && humanWins === false && remainingMoves.length === 0) {
           tie = true  
-
           if(tie === true) {
             scoreTie.push('tie')
           }
         }
       }
-
-      useEffect(()=> {
-      
-        if(playerPoints === 3 || finalScoreTie.length === 72) {
-          divGameOver.style.visibility = 'visible';
-          divGameOver.style.display = 'block';
-          //setGameStage(2)
-        }
-    
-      }, [playerPoints, finalScoreTie])
     }
-    
-
-    useCallback(()=> {
-
-    }, [playerMovesArray])
-  }
+  }, [playerMove]) 
 
   gameResult(player1, player1Moves, victoryConditions, avaliableMoves)
   gameResult(player2, player2Moves, victoryConditions, avaliableMoves)
+  
+  /**
+   * SETUP SCOREBOARD
+   */
+  const [scoreBoardPlayer, setScoreBoardPlayer] = useState(0);
+  const [scoreBoardHuman, setScoreBoardHuman] = useState(0);
+  const [scoreBoardTie, setScoreBoardTie] = useState(0);
 
-  function returnScoreTie () {
-    
-    if(scoreTie.length === 72) {
-      finalScoreTie.push([...finalScoreTie, 'tie'])
-    }
-    return finalScoreTie.length
-  }
-
-  function returnScorePlayer () {
-    if(scorePlayer.length === 1){
-      finalScorePlayer ++
-    }
-    return finalScorePlayer
-  }
-
-  console.log(finalScorePlayer)
-
-  function returnScoreHuman (){
-    if(scoreHuman.length === 1){
-      finalScoreHuman += 1
-    }
-    return finalScoreHuman
-  }
-
-  // console.log(`
-  //   PLAYER: ${scorePlayer.length} --- HUMAN: ${scoreHuman.length} --- TIE: ${finalScoreTie.length}
-  // `)
-
-  /* OLD FUNCTION
-  function checkWinCondition (arrOrig, arrDest, player) {
-    
-    for(let i = 0; i < arrDest.length; i++) {
-      let counter = 0
-      for(let item of arrOrig) {
-        if(arrDest[i].includes(item)) {
-          counter += 1
-      } 
-      if(counter === 3){
-        scorePlayers[player] += 1
-        //updateScorePlayers()
-        
-      } else {
-        scorePlayers.tie += 1
-        //updateScorePlayers()   
-      } 
-    }
-
-    useEffect(()=> {
-      
-      if(counter === 3 || scorePlayers.tie === 72) {
-        divGameOver.style.visibility = 'visible';
-        //setGameStage(2)
+  /**
+   * UPDATE SCORE BOARD FOR PLAYER
+   */
+  useEffect(() => {
+    const updateScoreBoardPlayer = () => {
+      if(scorePlayer.length === 1) {
+        setScoreBoardPlayer((point) => point + 1)
       }
-  
-    }, [counter, scorePlayers.tie])
-    
     }
-    
-    useCallback(() => {
-      
-    }, [handlePlayerMove])
+    updateScoreBoardPlayer()
+  }, [scorePlayer.length === 1])
 
-    console.log(scorePlayers)
-  }
-  */
+  /**
+   * UPDATE SCORE BOARD FOR HUMAN
+   */
+  useEffect(() => {
+
+    const updateScoreBoardHuman = () => {
+
+      if(scoreHuman.length === 1) {
+        setScoreBoardHuman((point) => point + 1)
+      }
+    }
+    updateScoreBoardHuman()
+  }, [scoreHuman.length === 1])
+
+  /**
+   * UPDATE SCORE BOARD FOR TIES
+   */
+  useEffect(() => {
+    const updateScoreBoardTie = () => {
+      if(scoreTie.length === 72){
+        setScoreBoardTie((point) => point + 1)
+      }
+    }
+    updateScoreBoardTie()
+  }, [scoreTie.length === 72])
   
-  // function updateScorePlayers() {
-  //   let scoreTie = 0
-    
-  //   if(scorePlayers.tie === 72){
-  //     scoreTie ++
-  //   }
-  //   scoreBoardTie.innerHTML = scoreTie
+  const gameOverElement = document.querySelector('#game-over-div');
+  const buttonOption = document.querySelectorAll('.btn-option');
   
-  // }
-
-  // function scoreBoardUpdatedPlayer1 () {
-  //   return scorePlayers.player1
-  // }
-
-  // function scoreBoardUpdatedPlayer2 () {
-  //   return scorePlayers.player2
-  // }
-
+  /**
+   * GAME OVER
+   */
+  useEffect(()=> {
+    const gameOver = () => {
+        if(scoreBoardPlayer || scoreBoardHuman || scoreBoardTie){
+          gameOverElement.style.visibility = 'visible';
+          gameOverElement.style.display = 'block';
+          for(let i = 0; i < buttonOption.length; i++){
+            buttonOption[i].disabled = true
+          }
+        }
+    }  
+    gameOver()
+  }, [scoreBoardPlayer, scoreBoardHuman, scoreBoardTie ])
+  
+  /**
+   * NEXT ROUND
+   */
   function nextRound () {
     
-    divGameOver.style.visibility = 'hidden'
-    
+    gameOverElement.style.visibility = 'hidden'
     setWhoPlays(player1)
     setPlayer1Moves([])
     setPlayer2Moves([])
+    setAvaliableMoves([0,1,2,3,4,5,6,7,8])
 
-    
     buttonOption.forEach((btn) => {
       btn.innerHTML = ''
       btn.disabled = false;
     })
-
-    
   }
 
+  /**
+   * QUIT GAME
+   */
   function quitGame() {
     window.location.reload()
   }
-
-  // console.log('Player 1 move: ', player1Moves)
-  // console.log('Player1 amount: ', player1Amount)
-
-  /* OLD FUNCTIONS CALL
-  handlePlayer1Moves()
-  handlePlayer2Moves()
-  checkWinCondition(player1Moves, victoryConditions, 'player1')
-  checkWinCondition(player2Moves, victoryConditions, 'player2')
-  checkWinCondition(player1Amount, victoryConditions, 'player1')
-  checkWinCondition(player2Amount, victoryConditions, 'player2')
-  */
 
   return (
     <>
@@ -401,34 +261,12 @@ export default function GamePlay () {
       </S.DivLogo>
       <S.ButtonShowTurn>
         <S.DivTurnIndicator>
-          {/* {handleGameTurn()} */}
-
         </S.DivTurnIndicator>
         <S.Text primary>turn</S.Text>
       </S.ButtonShowTurn>
       <ButtonReload />
     </S.Header>
     <S.DivPlayOptions>
-     
-      {/* <S.ButtonPlayOption className='btn-option' id='0' onClick={handlePlayerMove}>
-      </S.ButtonPlayOption>
-      <S.ButtonPlayOption className='btn-option' id='1' onClick={handlePlayerMove}>
-        </S.ButtonPlayOption>
-      <S.ButtonPlayOption className='btn-option' id='2' onClick={handlePlayerMove}>
-        </S.ButtonPlayOption>
-      <S.ButtonPlayOption className='btn-option' id='3' onClick={handlePlayerMove}>
-        </S.ButtonPlayOption>
-      <S.ButtonPlayOption className='btn-option' id='4' onClick={handlePlayerMove}>
-        </S.ButtonPlayOption>
-      <S.ButtonPlayOption className='btn-option' id='5' onClick={handlePlayerMove}>
-        </S.ButtonPlayOption>
-      <S.ButtonPlayOption className='btn-option' id='6' onClick={handlePlayerMove}>
-        </S.ButtonPlayOption>
-      <S.ButtonPlayOption className='btn-option' id='7' onClick={handlePlayerMove}>
-        </S.ButtonPlayOption>
-      <S.ButtonPlayOption className='btn-option' id='8' onClick={handlePlayerMove}>
-        </S.ButtonPlayOption> */}
-
         <S.ButtonPlayOption className='btn-option' id='0' onClick={gamePlayerMove}>
       </S.ButtonPlayOption>
       <S.ButtonPlayOption className='btn-option' id='1' onClick={gamePlayerMove}>
@@ -447,33 +285,21 @@ export default function GamePlay () {
         </S.ButtonPlayOption>
       <S.ButtonPlayOption className='btn-option' id='8' onClick={gamePlayerMove}>
         </S.ButtonPlayOption>
-
     </S.DivPlayOptions>
     <S.DivScoreBoard>
-
       <S.DivScorePlayer bgGold>
         <S.Text sm semibold>(X)</S.Text>
-        {/* <S.Text id='player1-score' lg bold>{scoreBoardUpdatedPlayer1()}</S.Text> */}
-        <S.Text id='player1-score' lg bold>{returnScorePlayer()}</S.Text>
+        <S.Text id='player1-score' lg bold>{scoreBoardPlayer}</S.Text>
       </S.DivScorePlayer>
-
       <S.DivScorePlayer bgGray>
         <S.Text sm semibold>empate</S.Text>
-        <S.Text id='tie-score' lg bold>{returnScoreTie()}</S.Text>
+        <S.Text id='tie-score' lg bold>{scoreBoardTie}</S.Text>
       </S.DivScorePlayer>
-
       <S.DivScorePlayer bgGreen>
         <S.Text sm semibold>(O)</S.Text>
-        {/* <S.Text id='player2-score' lg bold>{scoreBoardUpdatedPlayer2()}</S.Text> */}
-        <S.Text id='player2-score' lg bold>{returnScoreHuman()}</S.Text>
+        <S.Text id='player2-score' lg bold>{scoreBoardHuman}</S.Text>
       </S.DivScorePlayer>
-      
     </S.DivScoreBoard>
-    
-    {/* <S.ButtonPlayOption id='game-over' onClick={gameOver}>
-      Game over
-    </S.ButtonPlayOption> */}
-
     </>
   )
 }

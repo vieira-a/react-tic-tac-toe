@@ -5,41 +5,24 @@ import * as S from './styles';
 import ButtonX from "../Button/ButtonX";
 import ButtonO from "../Button/ButtonO";
 
-//Contetx
-import { useContext } from "react";
-import { GameContext } from "../../context/GameContext";
+//Hooks
+import { useState } from 'react';
+import GamePlay from '../GamePlay/GamePlay';
 
-export default function GameSetup() {
-
-  const 
-  {
-    /**New Refactoring */
-    player1,
-    player2,
-    setPlayer1,
-    setPlayer2,
-    gameStart,
-    changeGameStage,
-    /**End of new refactoring */
-    playerOption,
-    setPlayerOption,
-    cpuOption,
-    setCpuOption,
-    humanOption,
-    setHumanOption,
-    playerTurn,
-    setPlayerTurn,
-    player1Moves,
-    setPlayer1Moves,
-    player2Moves,
-    setPlayer2Moves,
-    setupGameOptions,
-    startGame,
-    gamePlayer, 
-    setGamePlayer,
-    handleGameOption,
-    handleGameStage,
-  } = useContext(GameContext);
+export default function GameSetup({
+  player1, 
+  setPlayer1,
+  player2, 
+  setPlayer2,
+  avaliableMoves,
+  setAvaliableMoves,
+  movePlayer1,
+  setMovePlayer1,
+  movePlayer2,
+  setMovePlayer2,
+  gameStage,
+  setGameStage
+}) {
 
   /**
    * SETUP: Functions to handle who and what each player will play
@@ -90,10 +73,11 @@ export default function GameSetup() {
         <S.ButtonSetPlayer disabled id='1' bgGold shadowGold>
           <S.Text>novo jogo (vs cpu)</S.Text>
         </S.ButtonSetPlayer>
-        <S.ButtonSetPlayer id='2' bgGreen shadowGreen onClick={changeGameStage}>
+        <S.ButtonSetPlayer id='2' bgGreen shadowGreen onClick={()=>setGameStage(1)}>
           <S.Text>novo jogo (vs humano)</S.Text>
         </S.ButtonSetPlayer>
       </S.SetPlayerSection>
+      {gameStage === 1 && <GamePlay/>}
     </>
   )
 }
