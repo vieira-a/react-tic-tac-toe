@@ -41,6 +41,8 @@ Esta aplicação foi proposta como um dos desafios do site [Frontend Mentor](htt
   - [x] Usuário escolhe se quer jogar uma das opções (**X** ou **O**)
   - [x] Usuário escolhe contra quem quer jogar (**CPU** ou **Humano**)
 
+*Para a primeira versão do jogo, será disponibilizada apenas a opção para jogar contra outro humano*
+
 *O jogo sempre começa com X*
 Ou seja, caso o usuário escolha **O** e selecione pra jogar contra CPU ou Humano, qualquer um deste dará início ao jogo com **X**
 
@@ -52,9 +54,8 @@ O primeiro jogador que conseguir combinar suas jogadas ao ponto de ter 3 peças 
 Inicio: 16/12/2022 | Fim: 23/12/2022
 
 **Tarefas**
-- [ ] Criar protótipo do design no Figma
+- [x] Criar protótipo do design no Figma
   - [x] Versão mobile
-  - [ ] Versão desktop
 - [x] Inicializar projeto
   - [x] Configurar arquivos iniciais e instalar dependências
   - [x] Planejar arquitetura do projeto, definindo estrutura de arquivos
@@ -109,8 +110,8 @@ Inicio: 02/01/2023 | Fim: 09/01/2023
 
 - [x] Criar componente conforme layout para apresentar o resultado do jogo
 - [x] Criar condições para um novo jogo
-  - [ ] Permitir continuar jogando (um novo jogo será iniciado incrementando a contagem do placar)
-  - [ ] Reiniciar o jogo, zerando o placar.
+  - [x] Permitir continuar jogando (um novo jogo será iniciado incrementando a contagem do placar)
+  - [x] Reiniciar o jogo, zerando o placar.
 
 ## Layout
 
@@ -122,6 +123,10 @@ Utilizei o Figma para construção dos componentes e montagem do layout, com bas
   
   Desde que começei a trabalhar com React JS, utilizei CSS de várias formas, dentre elas: CSS modules, Saas, Bootstrap e Tailwind. Mas até então não havia trabalhado tão diretamente com a biblioteca styled-components; desenvolvi os componentes dos meus útimos projetos em React JS utilizando utilizando o CSS.
   Tem sido uma ótima experiência, pois tem me propiciado a voltar a usar o CSS de forma mais pura.
+
+- React Hooks 
+
+  Especialmente os hooks useCallBack e useEffect foram de suma importância para gerenciar os estados corretamente, a fim de apresentar os resultados esperados.
 
 ---
 

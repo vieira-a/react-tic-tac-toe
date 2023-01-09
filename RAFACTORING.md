@@ -58,3 +58,5 @@ So I built some functions to manage the states needed to update the scoreboard:
 Those functions, keep the states updated.
 
 Finally, I build the function to manage the game over state, that shows the game over div.
+
+I decided not to use the Context API for now, as it was bringing unnecessary complexity. That will be for a next refactoring.

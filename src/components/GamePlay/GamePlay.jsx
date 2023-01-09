@@ -205,7 +205,7 @@ export default function GamePlay (
     const gameOver = () => {
         if(scoreBoardPlayer || scoreBoardHuman || scoreBoardTie){
           gameOverElement.style.visibility = 'visible';
-          gameOverElement.style.display = 'block';
+          gameOverElement.style.display = 'flex';
           for(let i = 0; i < buttonOption.length; i++){
             buttonOption[i].disabled = true
           }
@@ -240,20 +240,20 @@ export default function GamePlay (
 
   return (
     <>
-     <S.DivGameOver hidden id='game-over-div'>
+    <S.DivGameOver hidden id='game-over-div'>
       <S.DivGameOverBoard>
         <S.Text primary>final de jogo</S.Text>
         <S.Text lg green>jogar de novo?</S.Text>
         <S.DivGameOverButtons>
           <S.GameOverButtonQuit onClick={quitGame}>
             <S.Text bold>sair</S.Text>
-            </S.GameOverButtonQuit>
+          </S.GameOverButtonQuit>
           <S.GameOverButtonNextRound onClick={nextRound}>
             <S.Text bold>próxima rodada</S.Text>
           </S.GameOverButtonNextRound>
         </S.DivGameOverButtons>
       </S.DivGameOverBoard>
-     </S.DivGameOver>
+    </S.DivGameOver>
     <S.Header>
       <S.DivLogo>
         <ButtonX />
