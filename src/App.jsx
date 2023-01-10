@@ -1,5 +1,6 @@
 //Styles
 import { GlobalStyle } from "./components/GlobalStyle";
+import { color } from "./components/UI/Colors";
 
 //Components
 import GameSetup from "./components/GameSetup/GameSetup";
@@ -20,6 +21,7 @@ function App() {
     */
    const move1 = 'X'; // 0-x | 1-o
    const move2 = 'O'; // 0-x | 1-o
+   
    /**
     * SETUP who plays X or O. Default: player (X) - human (O)
     */

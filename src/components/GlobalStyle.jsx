@@ -37,6 +37,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .wrapper {
+    padding-top: 4.8rem;
     width: 37.5rem;
     text-align: center;
     margin-inline: auto;

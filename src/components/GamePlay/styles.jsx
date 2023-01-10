@@ -86,7 +86,7 @@ export const DivGameOver = styled.div`
   width: 100vw;
   height: 20rem;
   left: 0;
-  top: 20.5rem;
+  top: 22rem;
   background-color: ${color.gunmetal['4']};
   visibility: ${props => props.hidden ? 'hidden': 'visible'};
 `

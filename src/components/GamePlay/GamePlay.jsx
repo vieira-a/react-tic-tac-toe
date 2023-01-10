@@ -261,10 +261,11 @@ export default function GamePlay (
       </S.DivLogo>
       <S.ButtonShowTurn>
         <S.DivTurnIndicator>
+          {whoPlays === player1 ? <ButtonX /> : <ButtonO />}
         </S.DivTurnIndicator>
         <S.Text primary>turn</S.Text>
       </S.ButtonShowTurn>
-      <ButtonReload />
+      <ButtonReload onClick={quitGame} />
     </S.Header>
     <S.DivPlayOptions>
         <S.ButtonPlayOption className='btn-option' id='0' onClick={gamePlayerMove}>
